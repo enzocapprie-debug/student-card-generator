@@ -43,6 +43,21 @@
             min-height: 380px;
         }
 
+        /* Barcode Section */
+        .barcode-section {
+            background: #f8f9fa;
+            padding: 0.75rem;
+            text-align: center;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .barcode {
+            background: repeating-linear-gradient(90deg, #000 0px, #000 2px, #fff 2px, #fff 4px);
+            height: 50px;
+            border-radius: 4px;
+            margin-bottom: 0.5rem;
+        }
+
         .input-field {
             transition: all 0.3s ease;
         }
@@ -215,30 +230,25 @@
                     <h2 class="text-2xl font-bold text-gray-800 mb-6">👁️ Card Preview</h2>
 
                     <div id="studentCard" class="student-card">
-                        <!-- Blue Gradient Header -->
-                        <div
-                            style="background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); padding: 2rem 1.5rem; text-align: center; position: relative;">
-                            <div
-                                style="position: absolute; top: 0; left: 0; right: 0; height: 100%; background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);">
+                                                <!-- Card Header - POVNcc Style -->
+                        <div style="background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); padding: 1.5rem; position: relative;">
+                            <div style="position: absolute; top: 0; left: 0; right: 0; height: 100%; background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);"></div>
+                            
+                            <!-- Horizontal Layout: Logo Left + Name Right -->
+                            <div style="display: flex; align-items: center; gap: 1rem; position: relative; z-index: 1;">
+                                <!-- University Logo (Left) -->
+                                <div style="width: 80px; height: 80px; background: white; border-radius: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.2); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                                    <svg style="width: 50px; height: 50px; color: #1e3c72;" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72L12 15l5-2.73v3.72z" />
+                                    </svg>
+                                </div>
+                                
+                                <!-- University Name (Right) -->
+                                <div style="flex: 1; text-align: left;">
+                                    <h3 id="universityName" style="font-size: 1.5rem; font-weight: 700; color: white; margin: 0; line-height: 1.2;">HANYANG UNIVERSITY</h3>
+                                    <p id="universityNameEn" style="font-size: 0.875rem; color: rgba(255,255,255,0.9); margin: 0.25rem 0 0 0;">???  STUDENT ID CARD</p>
+                                </div>
                             </div>
-
-                            <!-- University Logo -->
-                            <div
-                                style="width: 85px; height: 85px; background: white; border-radius: 50%; box-shadow: 0 8px 20px rgba(0,0,0,0.2); display: flex; align-items: center; justify-content: center; border: 4px solid white; margin: 0 auto 1rem; position: relative; z-index: 1;">
-                                <svg style="width: 55px; height: 55px; color: #1e3c72;" fill="currentColor"
-                                    viewBox="0 0 24 24">
-                                    <path
-                                        d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72L12 15l5-2.73v3.72z" />
-                                </svg>
-                            </div>
-
-                            <!-- University Name -->
-                            <h3 id="universityName"
-                                style="font-size: 1.25rem; font-weight: 700; color: white; margin: 0; position: relative; z-index: 1;">
-                                ABC UNIVERSITY</h3>
-                            <p id="universityNameEn"
-                                style="font-size: 0.875rem; color: rgba(255,255,255,0.9); margin: 0.25rem 0 0 0; position: relative; z-index: 1;">
-                                STUDENT ID CARD</p>
                         </div>
 
                         <!-- Card Body -->
@@ -309,6 +319,12 @@
                                             Until: 12/2027</span>
                                     </div>
                                 </div>
+                            
+                            <!-- Barcode Section -->
+                            <div class="barcode-section">
+                                <div class="barcode"></div>
+                                <p id="cardBarcodeText" style="font-family: 'Courier New', monospace; font-size: 0.75rem; margin: 0.5rem 0 0 0; letter-spacing: 0.1em; color: #333;">*STU123456*</p>
+                            </div>
                             </div>
                         </div>
                     </div>
@@ -461,6 +477,7 @@
         const universityName = document.getElementById('universityName');
         const universityNameEn = document.getElementById('universityNameEn');
         const cardExpiry = document.getElementById('cardExpiry');
+        const cardBarcodeText = document.getElementById('cardBarcodeText');
 
         function generateDOB() {
             const year = Math.floor(Math.random() * 7) + 1998;
@@ -520,6 +537,7 @@
             cardDob.textContent = dobInput.value ? new Date(dobInput.value).toLocaleDateString('en-GB') : '---';
             cardId.textContent = studentIdInput.value || '---';
             cardDept.textContent = departmentInput.value || '---';
+            cardBarcodeText.textContent = studentIdInput.value ? `*${studentIdInput.value}*` : '*STU123456*';
 
             if (currentCountry === 'japan') {
                 cardName.className = 'jp-text';
