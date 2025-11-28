@@ -15,7 +15,7 @@ const UNIVERSITY_DATA = {
             name: "VNU University of Engineering and Technology",
             shortName: "VNU-UET",
             domain: "uet.vnu.edu.vn",
-            logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/VNU-UET_Logo.png/200px-VNU-UET_Logo.png",
+            logo: "img/logos/uet.svg",
             color: "#003DA5",
             layout: "horizontal",
             address: "144 Xuan Thuy, Cau Giay, Hanoi, Vietnam",
@@ -25,7 +25,7 @@ const UNIVERSITY_DATA = {
             name: "VNU University of Information Technology",
             shortName: "VNU-UIT",
             domain: "uit.edu.vn",
-            logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Logo_UIT_updated.svg/200px-Logo_UIT_updated.svg.png",
+            logo: "img/logos/uit.png",
             color: "#0066CC",
             layout: "vertical",
             address: "Linh Trung Ward, Thu Duc District, Ho Chi Minh City, Vietnam",
@@ -35,7 +35,7 @@ const UNIVERSITY_DATA = {
             name: "FPT University",
             shortName: "FPT",
             domain: "fpt.edu.vn",
-            logo: "img/logos/fpt.png",
+            logo: "img/logos/fpt.jpg",
             color: "#FF6900",
             layout: "horizontal",
             address: "Hoa Lac Hi-Tech Park, Km 29 Thang Long Blvd, Hanoi, Vietnam",
@@ -45,7 +45,7 @@ const UNIVERSITY_DATA = {
             name: "Posts and Telecommunications Institute of Technology",
             shortName: "PTIT",
             domain: "ptit.edu.vn",
-            logo: "img/logos/ptit.png",
+            logo: "img/logos/ptit.jpg",
             color: "#0052A5",
             layout: "vertical",
             address: "122 Hoang Quoc Viet, Cau Giay, Hanoi, Vietnam",
@@ -57,51 +57,51 @@ const UNIVERSITY_DATA = {
             name: "Massachusetts Institute of Technology",
             shortName: "MIT",
             domain: "mit.edu",
-            logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/MIT_logo.svg/200px-MIT_logo.svg.png",
+            logo: "img/logos/mit.svg",
             color: "#A31F34",
-            layout: "vertical",
+            layout: "horizontal",
             address: "77 Massachusetts Ave, Cambridge, MA 02139, USA",
-            majors: ["Course 6-3 (EECS)", "Course 6-1 (Electrical Engineering)", "Course 6-2 (Computer Science)", "Course 18 (Mathematics)", "Course 15 (Management)"]
+            majors: ["Computer Science", "Mechanical Engineering", "Physics", "Mathematics", "Electrical Engineering"]
         },
         {
             name: "Stanford University",
             shortName: "Stanford",
             domain: "stanford.edu",
-            logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Seal_of_Leland_Stanford_Junior_University.svg/200px-Seal_of_Leland_Stanford_Junior_University.svg.png",
+            logo: "img/logos/stanford.svg",
             color: "#8C1515",
-            layout: "horizontal",
+            layout: "vertical",
             address: "450 Serra Mall, Stanford, CA 94305, USA",
-            majors: ["Computer Science", "Electrical Engineering", "Management Science & Engineering", "Symbolic Systems", "AI & Machine Learning"]
+            majors: ["Computer Science", "Human Biology", "Engineering", "Economics", "Political Science"]
         },
         {
             name: "Harvard University",
             shortName: "Harvard",
             domain: "harvard.edu",
-            logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Harvard_University_coat_of_arms.svg/200px-Harvard_University_coat_of_arms.svg.png",
+            logo: "img/logos/harvard.svg",
             color: "#A51C30",
             layout: "vertical",
             address: "Massachusetts Hall, Cambridge, MA 02138, USA",
-            majors: ["Computer Science", "Applied Mathematics", "Statistics", "Economics", "Engineering Sciences"]
+            majors: ["Social Sciences", "Biology", "History", "Mathematics", "Psychology"]
         },
         {
             name: "University of California, Berkeley",
             shortName: "UC Berkeley",
             domain: "berkeley.edu",
-            logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Seal_of_University_of_California%2C_Berkeley.svg/200px-Seal_of_University_of_California%2C_Berkeley.svg.png",
+            logo: "img/logos/berkeley.svg",
             color: "#003262",
             layout: "horizontal",
             address: "Berkeley, CA 94720, USA",
-            majors: ["EECS (Electrical Engineering & Computer Science)", "Computer Science (L&S)", "Data Science", "Cognitive Science", "Business Administration"]
+            majors: ["Computer Science", "Economics", "Political Science", "Business Administration", "Psychology"]
         },
         {
             name: "Yale University",
             shortName: "Yale",
             domain: "yale.edu",
-            logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Yale_University_Shield_1.svg/200px-Yale_University_Shield_1.svg.png",
+            logo: "img/logos/yale.svg",
             color: "#00356B",
             layout: "vertical",
             address: "New Haven, CT 06520, USA",
-            majors: ["Computer Science", "Statistics & Data Science", "Applied Mathematics", "Economics", "Cognitive Science"]
+            majors: ["Economics", "Political Science", "History", "Computer Science", "Psychology"]
         }
     ],
     "India": [
@@ -109,28 +109,31 @@ const UNIVERSITY_DATA = {
             name: "Indian Institute of Technology Delhi",
             shortName: "IIT Delhi",
             domain: "iitd.ac.in",
-            logo: "https://upload.wikimedia.org/wikipedia/en/thumb/f/fd/Indian_Institute_of_Technology_Delhi_Logo.svg/200px-Indian_Institute_of_Technology_Delhi_Logo.svg.png",
-            color: "#003F87",
-            layout: "horizontal",
-            address: "Hauz Khas, New Delhi, Delhi 110016, India"
+            logo: "img/logos/iitd.png",
+            color: "#B31B1B",
+            layout: "vertical",
+            address: "Hauz Khas, New Delhi, Delhi 110016, India",
+            majors: ["Computer Science", "Electrical Engineering", "Mechanical Engineering", "Civil Engineering", "Chemical Engineering"]
         },
         {
             name: "University of Mumbai",
             shortName: "Mumbai University",
             domain: "mu.ac.in",
-            logo: "https://upload.wikimedia.org/wikipedia/en/thumb/7/7c/Mumbai_University_Logo.svg/200px-Mumbai_University_Logo.svg.png",
-            color: "#800000",
-            layout: "vertical",
-            address: "Kalina, Santacruz East, Mumbai, Maharashtra 400098, India"
+            logo: "img/logos/mumbai.svg",
+            color: "#A6192E",
+            layout: "horizontal",
+            address: "M.G. Road, Fort, Mumbai, Maharashtra 400032, India",
+            majors: ["Commerce", "Management", "Law", "Science", "Arts"]
         },
         {
             name: "University of Delhi",
             shortName: "Delhi University",
             domain: "du.ac.in",
-            logo: "https://upload.wikimedia.org/wikipedia/en/thumb/4/4b/University_of_Delhi.svg/200px-University_of_Delhi.svg.png",
-            color: "#8B0000",
-            layout: "horizontal",
-            address: "University Road, Delhi 110007, India"
+            logo: "img/logos/delhi.png",
+            color: "#4B2E83",
+            layout: "vertical",
+            address: "Benito Juarez Marg, South Campus, New Delhi, India",
+            majors: ["Political Science", "Economics", "English", "Commerce", "History"]
         }
     ],
     "UK": [
@@ -138,31 +141,31 @@ const UNIVERSITY_DATA = {
             name: "University of Oxford",
             shortName: "Oxford",
             domain: "ox.ac.uk",
-            logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Oxford-University-Circlet.svg/200px-Oxford-University-Circlet.svg.png",
+            logo: "img/logos/oxford.svg",
             color: "#002147",
             layout: "vertical",
-            address: "Wellington Square, Oxford OX1 2JD, United Kingdom",
-            majors: ["Computer Science", "Engineering Science", "Mathematics", "Physics", "Chemistry", "Biological Sciences"]
+            address: "Wellington Square, Oxford OX1 2JD, UK",
+            majors: ["Philosophy, Politics and Economics", "Law", "Medicine", "History", "Mathematics"]
         },
         {
             name: "University of Cambridge",
             shortName: "Cambridge",
             domain: "cam.ac.uk",
-            logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/University_of_Cambridge_logo.svg/200px-University_of_Cambridge_logo.svg.png",
+            logo: "img/logos/cambridge.png",
             color: "#A3C1AD",
             layout: "horizontal",
             address: "The Old Schools, Trinity Ln, Cambridge CB2 1TN, UK",
-            majors: ["Computer Science", "Engineering", "Natural Sciences", "Mathematics", "Economics", "Medicine"]
+            majors: ["Natural Sciences", "Engineering", "Medicine", "Law", "Computer Science"]
         },
         {
             name: "Imperial College London",
             shortName: "Imperial",
             domain: "imperial.ac.uk",
-            logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Imperial_College_London_Logo.svg/200px-Imperial_College_London_Logo.svg.png",
+            logo: "img/logos/imperial.png",
             color: "#003E74",
-            majors: ["Computing", "Electrical Engineering", "Mechanical Engineering", "Bioengineering", "Aeronautics", "Materials Science"],
             layout: "vertical",
-            address: "South Kensington Campus, London SW7 2AZ, UK"
+            address: "Exhibition Rd, South Kensington, London SW7 2BX, UK",
+            majors: ["Medicine", "Computing", "Physics", "Mechanical Engineering", "Civil Engineering"]
         }
     ],
     "Japan": [
@@ -170,19 +173,21 @@ const UNIVERSITY_DATA = {
             name: "The University of Tokyo",
             shortName: "UTokyo",
             domain: "u-tokyo.ac.jp",
-            logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/The_University_of_Tokyo_coat_of_arms.svg/200px-The_University_of_Tokyo_coat_of_arms.svg.png",
-            color: "#003F87",
+            logo: "img/logos/utokyo.png",
+            color: "#0080FF",
             layout: "horizontal",
-            address: "7-3-1 Hongo, Bunkyo-ku, Tokyo 113-8654, Japan"
+            address: "7-3-1 Hongo, Bunkyo City, Tokyo 113-8654, Japan",
+            majors: ["Law", "Medicine", "Engineering", "Economics", "Science"]
         },
         {
             name: "Kyoto University",
-            shortName: "Kyoto",
+            shortName: "KyotoU",
             domain: "kyoto-u.ac.jp",
-            logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Kyoto_University_logo.svg/200px-Kyoto_University_logo.svg.png",
-            color: "#8B0000",
+            logo: "img/logos/kyoto.svg",
+            color: "#003865",
             layout: "vertical",
-            address: "Yoshida-Honmachi, Sakyo-ku, Kyoto 606-8501, Japan"
+            address: "Yoshidahonmachi, Sakyo Ward, Kyoto, 606-8501, Japan",
+            majors: ["Integrated Human Studies", "Education", "Law", "Economics", "Science"]
         }
     ],
     "South Korea": [
@@ -190,28 +195,31 @@ const UNIVERSITY_DATA = {
             name: "Seoul National University",
             shortName: "SNU",
             domain: "snu.ac.kr",
-            logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Seoul_National_University_seal.svg/200px-Seoul_National_University_seal.svg.png",
-            color: "#003F87",
-            layout: "horizontal",
-            address: "1 Gwanak-ro, Gwanak-gu, Seoul 08826, South Korea"
+            logo: "img/logos/snu.svg",
+            color: "#0F0F70",
+            layout: "vertical",
+            address: "1 Gwanak-ro, Gwanak-gu, Seoul, South Korea",
+            majors: ["Business Administration", "Engineering", "Medicine", "Law", "Social Sciences"]
         },
         {
             name: "Yonsei University",
             shortName: "Yonsei",
             domain: "yonsei.ac.kr",
-            logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Yonsei_University_Emblem.svg/200px-Yonsei_University_Emblem.svg.png",
-            color: "#003876",
-            layout: "vertical",
-            address: "50 Yonsei-ro, Seodaemun-gu, Seoul 03722, South Korea"
+            logo: "img/logos/yonsei.png",
+            color: "#00205B",
+            layout: "horizontal",
+            address: "50 Yonsei-ro, Seodaemun-gu, Seoul, South Korea",
+            majors: ["Business", "Engineering", "Medicine", "International Studies", "Political Science"]
         },
         {
             name: "Korea University",
-            shortName: "Korea",
+            shortName: "KU",
             domain: "korea.ac.kr",
-            logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Korea_University_Emblem.svg/200px-Korea_University_Emblem.svg.png",
-            color: "#A50034",
-            layout: "horizontal",
-            address: "145 Anam-ro, Seongbuk-gu, Seoul 02841, South Korea"
+            logo: "img/logos/korea.svg",
+            color: "#8C002B",
+            layout: "vertical",
+            address: "145 Anam-ro, Seongbuk-gu, Seoul, South Korea",
+            majors: ["Business Administration", "Media & Communication", "International Studies", "Psychology", "Computer Science"]
         }
     ],
     "Germany": [
@@ -219,77 +227,85 @@ const UNIVERSITY_DATA = {
             name: "Technical University of Munich",
             shortName: "TUM",
             domain: "tum.de",
-            logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Logo_of_the_Technical_University_of_Munich.svg/200px-Logo_of_the_Technical_University_of_Munich.svg.png",
-            color: "#0065BD",
+            logo: "img/logos/tum.svg",
+            color: "#3070B3",
             layout: "horizontal",
-            address: "Arcisstraße 21, 80333 München, Germany"
+            address: "Arcisstraße 21, 80333 München, Germany",
+            majors: ["Informatics", "Mechanical Engineering", "Electrical Engineering", "Physics", "Management"]
         },
         {
             name: "Ludwig Maximilian University of Munich",
-            shortName: "LMU Munich",
+            shortName: "LMU",
             domain: "lmu.de",
-            logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/LMU_Muenchen_Logo.svg/200px-LMU_Muenchen_Logo.svg.png",
-            color: "#156928",
+            logo: "img/logos/lmu.svg",
+            color: "#00883A",
             layout: "vertical",
-            address: "Geschwister-Scholl-Platz 1, 80539 München, Germany"
+            address: "Geschwister-Scholl-Platz 1, 80539 München, Germany",
+            majors: ["Medicine", "Law", "Physics", "Psychology", "Business Administration"]
         }
     ],
     "Canada": [
         {
             name: "University of Toronto",
-            shortName: "UofT",
+            shortName: "U of T",
             domain: "utoronto.ca",
-            logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/University_of_Toronto_coat_of_arms.svg/200px-University_of_Toronto_coat_of_arms.svg.png",
+            logo: "img/logos/uoft.png",
             color: "#002A5C",
-            layout: "vertical",
-            address: "27 King's College Cir, Toronto, ON M5S 1A1, Canada"
+            layout: "horizontal",
+            address: "27 King's College Cir, Toronto, ON M5S 1A1, Canada",
+            majors: ["Computer Science", "Engineering", "Business", "Psychology", "Biology"]
         },
         {
             name: "McGill University",
             shortName: "McGill",
             domain: "mcgill.ca",
-            logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/McGill_University_CoA.svg/200px-McGill_University_CoA.svg.png",
+            logo: "img/logos/mcgill.png",
             color: "#ED1B2F",
-            layout: "horizontal",
-            address: "845 Sherbrooke St W, Montreal, QC H3A 0G4, Canada"
+            layout: "vertical",
+            address: "845 Sherbrooke St W, Montreal, Quebec H3A 0G4, Canada",
+            majors: ["Medicine", "Law", "Engineering", "Management", "Arts"]
         },
         {
             name: "University of British Columbia",
             shortName: "UBC",
             domain: "ubc.ca",
-            logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/University_of_British_Columbia_coat_of_arms.svg/200px-University_of_British_Columbia_coat_of_arms.svg.png",
+            logo: "img/logos/ubc.svg",
             color: "#002145",
-            layout: "vertical",
-            address: "2329 West Mall, Vancouver, BC V6T 1Z4, Canada"
+            layout: "horizontal",
+            address: "Vancouver, BC V6T 1Z4, Canada",
+            majors: ["Computer Science", "Economics", "Psychology", "Biology", "International Relations"]
         }
     ],
     "Australia": [
         {
-            name: "University of Melbourne",
+            name: "The University of Melbourne",
             shortName: "UniMelb",
             domain: "unimelb.edu.au",
-            logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/University_of_Melbourne_logo.svg/200px-University_of_Melbourne_logo.svg.png",
-            color: "#003C71",
-            layout: "horizontal",
-            address: "Parkville VIC 3010, Australia"
+            logo: "img/logos/unimelb.jpg",
+            color: "#094183",
+            layout: "vertical",
+            address: "Parkville VIC 3010, Australia",
+            majors: ["Medicine", "Law", "Business", "Arts", "Engineering"]
         },
         {
             name: "Australian National University",
             shortName: "ANU",
             domain: "anu.edu.au",
-            logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Australian_National_University_logo.svg/200px-Australian_National_University_logo.svg.png",
-            color: "#003F87",
-            layout: "vertical",
-            address: "Acton ACT 2601, Australia"
+            logo: "img/logos/anu.png",
+            color: "#BE830E",
+            layout: "horizontal",
+            address: "Canberra ACT 0200, Australia",
+            majors: ["Political Science", "International Relations", "Law", "Economics", "Philosophy"]
         },
         {
-            name: "University of Sydney",
+            name: "The University of Sydney",
             shortName: "USYD",
             domain: "sydney.edu.au",
-            logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/University_of_Sydney_coat_of_arms.svg/200px-University_of_Sydney_coat_of_arms.svg.png",
-            color: "#860C1C",
-            layout: "horizontal",
-            address: "Camperdown NSW 2006, Australia"
+            logo: "img/logos/usyd.png",
+            color: "#E64626",
+            layout: "vertical",
+            address: "Camperdown NSW 2006, Australia",
+            majors: ["Medicine", "Law", "Arts", "Engineering", "Business"]
         }
     ],
     "France": [
@@ -297,28 +313,31 @@ const UNIVERSITY_DATA = {
             name: "Sorbonne University",
             shortName: "Sorbonne",
             domain: "sorbonne-universite.fr",
-            logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Logo_Sorbonne_Universit%C3%A9.svg/200px-Logo_Sorbonne_Universit%C3%A9.svg.png",
-            color: "#003F87",
-            layout: "vertical",
-            address: "21 Rue de l'École de Médecine, 75006 Paris, France"
+            logo: "img/logos/sorbonne.svg",
+            color: "#1D1D1B",
+            layout: "horizontal",
+            address: "21 Rue de l'École de Médecine, 75006 Paris, France",
+            majors: ["Humanities", "Medicine", "Science", "Engineering", "Law"]
         },
         {
             name: "École Polytechnique",
             shortName: "Polytechnique",
             domain: "polytechnique.edu",
-            logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Logo_EP.svg/200px-Logo_EP.svg.png",
-            color: "#C8102E",
-            layout: "horizontal",
-            address: "Route de Saclay, 91128 Palaiseau, France"
+            logo: "img/logos/polytechnique.svg",
+            color: "#CE2029",
+            layout: "vertical",
+            address: "Route de Saclay, 91128 Palaiseau, France",
+            majors: ["Mathematics", "Physics", "Computer Science", "Economics", "Mechanics"]
         },
         {
-            name: "Paris Sciences et Lettres University",
+            name: "PSL Research University",
             shortName: "PSL",
             domain: "psl.eu",
-            logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Logo_PSL.svg/200px-Logo_PSL.svg.png",
-            color: "#004080",
-            layout: "vertical",
-            address: "60 rue Mazarine, 75006 Paris, France"
+            logo: "img/logos/psl.svg",
+            color: "#000000",
+            layout: "horizontal",
+            address: "60 Rue Mazarine, 75006 Paris, France",
+            majors: ["Science", "Engineering", "Humanities", "Social Sciences", "Arts"]
         }
     ],
     "Singapore": [
@@ -326,19 +345,21 @@ const UNIVERSITY_DATA = {
             name: "National University of Singapore",
             shortName: "NUS",
             domain: "nus.edu.sg",
-            logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/NUS_coat_of_arms.svg/200px-NUS_coat_of_arms.svg.png",
-            color: "#003D7C",
+            logo: "img/logos/nus.jpg",
+            color: "#EF7C00",
             layout: "horizontal",
-            address: "21 Lower Kent Ridge Rd, Singapore 119077"
+            address: "21 Lower Kent Ridge Rd, Singapore 119077",
+            majors: ["Computer Science", "Engineering", "Business", "Medicine", "Law"]
         },
         {
             name: "Nanyang Technological University",
             shortName: "NTU",
             domain: "ntu.edu.sg",
-            logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Nanyang_Technological_University.svg/200px-Nanyang_Technological_University.svg.png",
-            color: "#00205B",
+            logo: "img/logos/ntu.png",
+            color: "#C20430",
             layout: "vertical",
-            address: "50 Nanyang Ave, Singapore 639798"
+            address: "50 Nanyang Ave, Singapore 639798",
+            majors: ["Engineering", "Business", "Science", "Humanities", "Medicine"]
         }
     ],
     "China": [
@@ -346,28 +367,31 @@ const UNIVERSITY_DATA = {
             name: "Tsinghua University",
             shortName: "Tsinghua",
             domain: "tsinghua.edu.cn",
-            logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Tsinghua_University_Logo.svg/200px-Tsinghua_University_Logo.svg.png",
-            color: "#6C2283",
+            logo: "img/logos/tsinghua.svg",
+            color: "#660099",
             layout: "vertical",
-            address: "Haidian District, Beijing 100084, China"
+            address: "30 Shuangqing Rd, Haidian District, Beijing, China",
+            majors: ["Engineering", "Computer Science", "Physics", "Economics", "Architecture"]
         },
         {
             name: "Peking University",
             shortName: "PKU",
             domain: "pku.edu.cn",
-            logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Peking_University_seal.svg/200px-Peking_University_seal.svg.svg.png",
+            logo: "img/logos/pku.svg",
             color: "#8B0000",
             layout: "horizontal",
-            address: "No. 5 Yiheyuan Road, Haidian District, Beijing 100871, China"
+            address: "5 Yiheyuan Rd, Haidian District, Beijing, China",
+            majors: ["Literature", "History", "Philosophy", "Science", "Economics"]
         },
         {
             name: "Fudan University",
             shortName: "Fudan",
             domain: "fudan.edu.cn",
-            logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Fudan_University_Logo.svg/200px-Fudan_University_Logo.svg.png",
-            color: "#003F87",
+            logo: "img/logos/fudan.svg",
+            color: "#003366",
             layout: "vertical",
-            address: "220 Handan Rd, Wu Jiao Chang, Yangpu District, Shanghai 200433, China"
+            address: "220 Handan Rd, Yangpu District, Shanghai, China",
+            majors: ["Journalism", "Economics", "Management", "Mathematics", "Medicine"]
         }
     ],
     "Brazil": [
@@ -375,28 +399,31 @@ const UNIVERSITY_DATA = {
             name: "University of São Paulo",
             shortName: "USP",
             domain: "usp.br",
-            logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Webysther_20160322_-_Logo_USP.svg/200px-Webysther_20160322_-_Logo_USP.svg.png",
-            color: "#003F87",
+            logo: "img/logos/usp.svg",
+            color: "#0055A4",
             layout: "horizontal",
-            address: "Rua da Reitoria, 374 - Butantã, São Paulo - SP, 05508-220, Brazil"
+            address: "Butantã, São Paulo - State of São Paulo, Brazil",
+            majors: ["Engineering", "Medicine", "Law", "Architecture", "Economics"]
         },
         {
-            name: "State University of Campinas",
-            shortName: "UNICAMP",
+            name: "University of Campinas",
+            shortName: "Unicamp",
             domain: "unicamp.br",
-            logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Unicamp_logo.svg/200px-Unicamp_logo.svg.png",
-            color: "#00205B",
+            logo: "img/logos/unicamp.png",
+            color: "#CC0000",
             layout: "vertical",
-            address: "Cidade Universitária Zeferino Vaz, Campinas - SP, 13083-970, Brazil"
+            address: "Cidade Universitária, Campinas - SP, Brazil",
+            majors: ["Engineering", "Physics", "Medicine", "Biology", "Computer Science"]
         },
         {
             name: "Federal University of Rio de Janeiro",
             shortName: "UFRJ",
             domain: "ufrj.br",
-            logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/UFRJ_logo.svg/200px-UFRJ_logo.svg.png",
-            color: "#003F87",
+            logo: "img/logos/ufrj.svg",
+            color: "#003399",
             layout: "horizontal",
-            address: "Av. Pedro Calmon, 550 - Cidade Universitária, Rio de Janeiro - RJ, Brazil"
+            address: "Cidade Universitária, Rio de Janeiro - RJ, Brazil",
+            majors: ["Engineering", "Medicine", "Law", "Architecture", "Economics"]
         }
     ]
 };
