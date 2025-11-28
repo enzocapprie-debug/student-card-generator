@@ -135,10 +135,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
         // Use randomuser.me API - has proper CORS headers and works on production
-        // Use Cloudflare Worker proxy - bypasses CORS!
-        const WORKER_URL = 'https://student-photo-proxy.thanhnguyentuan2007.workers.dev';
-        const gender = Math.random() > 0.5 ? 'male' : 'female';
-        const realisticPhotoUrl = `${WORKER_URL}?gender=${gender}`;
+        // const gender = Math.random() > 0.5 ? 'men' : 'women';
+        // const randomId = Math.floor(Math.random() * 99);
+        // const realisticPhotoUrl = `https://randomuser.me/api/portraits/${gender}/${randomId}.jpg`;
 
         studentNameInput.value = fullName;
         studentIdInput.value = studentId;
