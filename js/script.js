@@ -135,9 +135,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
         // Use randomuser.me API - has proper CORS headers and works on production
-        const gender = Math.random() > 0.5 ? 'men' : 'women';
-        const randomId = Math.floor(Math.random() * 99);
-        const realisticPhotoUrl = `https://randomuser.me/api/portraits/${gender}/${randomId}.jpg`;
+        // Use Cloudflare Worker proxy - bypasses CORS!
+        const WORKER_URL = 'https://student-photo-proxy.thanhnguyentuan2007.workers.dev/';
+        const gender = Math.random() > 0.5 ? 'male' : 'female';
+        const realisticPhotoUrl = `${WORKER_URL}?gender=${gender}`;
 
         studentNameInput.value = fullName;
         studentIdInput.value = studentId;
@@ -147,15 +148,32 @@ document.addEventListener('DOMContentLoaded', function () {
         issueDateInput.value = formatDateForInput(dates.issued);
         expiryDateInput.value = formatDateForInput(dates.validThru);
 
+
         console.log('[GENERATED]', fullName);
 
         // Show card IMMEDIATELY with placeholder - no waiting!
         const placeholderPhoto = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAyNCAyNCcgZmlsbD0nbm9uZScgc3Ryb2tlPScjY2NjJyBzdHJva2Utd2lkdGg9JzInPjxjaXJjbGUgY3g9JzEyJyBjeT0nOCcgcj0nNCcvPjxwYXRoIGQ9J00yMCAyMXYtMmE0IDQgMCAwIDAtNC00SDhhNCA0IDAgMCAwLTQgNHYyJy8+PC9zdmc+";
         updateCardPreview(uploadedPhotoBase64 || placeholderPhoto);
 
-        // Then load actual photo asynchronously and update when ready
+        // Then load actual photo asynchronously
         if (!uploadedPhotoBase64) {
-            loadPhotoAsync(realisticPhotoUrl);
+            const config = window.APP_CONFIG || {};
+            const workerUrl = config.WORKER_URL;
+
+            if (workerUrl && config.PHOTO?.enableRealisticPhotos) {
+                // Use Cloudflare Worker for realistic photos
+                console.log('[PHOTO] Using Cloudflare Worker:', workerUrl);
+                const gender = Math.random() > 0.5 ? 'male' : 'female';
+                const photoUrl = `${workerUrl}?gender=${gender}&t=${Date.now()}`;
+                loadPhotoAsync(photoUrl);
+            } else {
+                // Fallback to Dicebear (always works!)
+                console.log('[PHOTO] Using Dicebear fallback');
+                const seed = encodeURIComponent(fullName);
+                const style = config.FALLBACK?.dicebearStyle || 'adventurer';
+                const fallbackUrl = `https://api.dicebear.com/7.x/${style}/svg?seed=${seed}`;
+                updateCardPreview(fallbackUrl);
+            }
         }
     }
 
