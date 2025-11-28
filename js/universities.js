@@ -1,5 +1,111 @@
 // Global University Database
 const UNIVERSITY_DATA = {
+    "USA": [
+        {
+            name: "Massachusetts Institute of Technology",
+            shortName: "MIT",
+            domain: "mit.edu",
+            logo: "img/logos/mit_official.svg",
+            color: "#A31F34",
+            layout: "horizontal",
+            address: "77 Massachusetts Ave, Cambridge, MA 02139, USA",
+            majors: ["Computer Science", "Mechanical Engineering", "Physics", "Mathematics", "Electrical Engineering"]
+        },
+        {
+            name: "Harvard University",
+            shortName: "Harvard",
+            domain: "harvard.edu",
+            logo: "img/logos/harvard.svg",
+            color: "#A51C30",
+            layout: "vertical",
+            address: "Cambridge, MA 02138, USA",
+            majors: ["Law", "Medicine", "Business", "Political Science", "Economics"]
+        },
+        {
+            name: "Stanford University",
+            shortName: "Stanford",
+            domain: "stanford.edu",
+            logo: "img/logos/stanford.svg",
+            color: "#8C1515",
+            layout: "vertical",
+            address: "450 Serra Mall, Stanford, CA 94305, USA",
+            majors: ["Computer Science", "Engineering", "Business", "Law", "Medicine"]
+        },
+        {
+            name: "University of California, Berkeley",
+            shortName: "UC Berkeley",
+            domain: "berkeley.edu",
+            logo: "img/logos/berkeley.svg",
+            color: "#003262",
+            layout: "horizontal",
+            address: "Berkeley, CA 94720, USA",
+            majors: ["Computer Science", "Economics", "Engineering", "Business", "Political Science"]
+        },
+        {
+            name: "Yale University",
+            shortName: "Yale",
+            domain: "yale.edu",
+            logo: "img/logos/yale.svg",
+            color: "#00356B",
+            layout: "vertical",
+            address: "New Haven, CT 06520, USA",
+            majors: ["Law", "History", "Economics", "Political Science", "Psychology"]
+        }
+    ],
+    "Canada": [
+        {
+            name: "University of Toronto",
+            shortName: "UofT",
+            domain: "utoronto.ca",
+            logo: "img/logos/uoft.png",
+            color: "#002A5C",
+            layout: "vertical",
+            address: "27 King's College Cir, Toronto, ON M5S 1A1, Canada",
+            majors: ["Computer Science", "Engineering", "Business", "Medicine", "Law"]
+        },
+        {
+            name: "McGill University",
+            shortName: "McGill",
+            domain: "mcgill.ca",
+            logo: "img/logos/mcgill.png",
+            color: "#ED1B2F",
+            layout: "horizontal",
+            address: "845 Sherbrooke St W, Montreal, Quebec H3A 0G4, Canada",
+            majors: ["Medicine", "Law", "Engineering", "Arts", "Science"]
+        },
+        {
+            name: "University of British Columbia",
+            shortName: "UBC",
+            domain: "ubc.ca",
+            logo: "img/logos/ubc.svg",
+            color: "#002145",
+            layout: "vertical",
+            address: "Vancouver, BC V6T 1Z4, Canada",
+            majors: ["Forestry", "Oceanography", "Computer Science", "Business", "Engineering"]
+        }
+    ],
+    "India": [
+        {
+            name: "Indian Institute of Technology Delhi",
+            shortName: "IIT Delhi",
+            domain: "iitd.ac.in",
+            logo: "img/logos/iitd_official.png",
+            color: "#B31B1B",
+            layout: "vertical",
+            address: "Hauz Khas, New Delhi, Delhi 110016, India",
+            majors: ["Computer Science", "Electrical Engineering", "Mechanical Engineering", "Civil Engineering", "Chemical Engineering"]
+        },
+        {
+            name: "University of Mumbai",
+            shortName: "Mumbai University",
+            domain: "mu.ac.in",
+            logo: "img/logos/mumbai.svg",
+            color: "#A6192E",
+            layout: "vertical",
+            address: "CST Road, Kalina, Santacruz East, Mumbai, Maharashtra 400098, India",
+            majors: ["Commerce", "Arts", "Science", "Law", "Engineering"]
+        }
+    ],
     "Vietnam": [
         {
             name: "Hanoi University of Science and Technology",
@@ -17,7 +123,7 @@ const UNIVERSITY_DATA = {
             domain: "uet.vnu.edu.vn",
             logo: "img/logos/uet.svg",
             color: "#003DA5",
-            layout: "horizontal",
+            layout: "vertical",
             address: "144 Xuan Thuy, Cau Giay, Hanoi, Vietnam",
             majors: ["Computer Science", "Information Technology", "Electronics Engineering", "Data Science", "Network Engineering"]
         },
@@ -25,7 +131,7 @@ const UNIVERSITY_DATA = {
             name: "VNU University of Information Technology",
             shortName: "VNU-UIT",
             domain: "uit.edu.vn",
-            logo: "img/logos/uit.png",
+            logo: "img/logos/uit_official.png",
             color: "#0066CC",
             layout: "vertical",
             address: "Linh Trung Ward, Thu Duc District, Ho Chi Minh City, Vietnam",
@@ -50,90 +156,6 @@ const UNIVERSITY_DATA = {
             layout: "vertical",
             address: "122 Hoang Quoc Viet, Cau Giay, Hanoi, Vietnam",
             majors: ["Telecommunications Engineering", "Information Technology", "Electronics Engineering", "Network Administration", "Computer Engineering"]
-        }
-    ],
-    "USA": [
-        {
-            name: "Massachusetts Institute of Technology",
-            shortName: "MIT",
-            domain: "mit.edu",
-            logo: "img/logos/mit.svg",
-            color: "#A31F34",
-            layout: "horizontal",
-            address: "77 Massachusetts Ave, Cambridge, MA 02139, USA",
-            majors: ["Computer Science", "Mechanical Engineering", "Physics", "Mathematics", "Electrical Engineering"]
-        },
-        {
-            name: "Stanford University",
-            shortName: "Stanford",
-            domain: "stanford.edu",
-            logo: "img/logos/stanford.svg",
-            color: "#8C1515",
-            layout: "vertical",
-            address: "450 Serra Mall, Stanford, CA 94305, USA",
-            majors: ["Computer Science", "Human Biology", "Engineering", "Economics", "Political Science"]
-        },
-        {
-            name: "Harvard University",
-            shortName: "Harvard",
-            domain: "harvard.edu",
-            logo: "img/logos/harvard.svg",
-            color: "#A51C30",
-            layout: "vertical",
-            address: "Massachusetts Hall, Cambridge, MA 02138, USA",
-            majors: ["Social Sciences", "Biology", "History", "Mathematics", "Psychology"]
-        },
-        {
-            name: "University of California, Berkeley",
-            shortName: "UC Berkeley",
-            domain: "berkeley.edu",
-            logo: "img/logos/berkeley.svg",
-            color: "#003262",
-            layout: "horizontal",
-            address: "Berkeley, CA 94720, USA",
-            majors: ["Computer Science", "Economics", "Political Science", "Business Administration", "Psychology"]
-        },
-        {
-            name: "Yale University",
-            shortName: "Yale",
-            domain: "yale.edu",
-            logo: "img/logos/yale.svg",
-            color: "#00356B",
-            layout: "vertical",
-            address: "New Haven, CT 06520, USA",
-            majors: ["Economics", "Political Science", "History", "Computer Science", "Psychology"]
-        }
-    ],
-    "India": [
-        {
-            name: "Indian Institute of Technology Delhi",
-            shortName: "IIT Delhi",
-            domain: "iitd.ac.in",
-            logo: "img/logos/iitd.png",
-            color: "#B31B1B",
-            layout: "vertical",
-            address: "Hauz Khas, New Delhi, Delhi 110016, India",
-            majors: ["Computer Science", "Electrical Engineering", "Mechanical Engineering", "Civil Engineering", "Chemical Engineering"]
-        },
-        {
-            name: "University of Mumbai",
-            shortName: "Mumbai University",
-            domain: "mu.ac.in",
-            logo: "img/logos/mumbai.svg",
-            color: "#A6192E",
-            layout: "horizontal",
-            address: "M.G. Road, Fort, Mumbai, Maharashtra 400032, India",
-            majors: ["Commerce", "Management", "Law", "Science", "Arts"]
-        },
-        {
-            name: "University of Delhi",
-            shortName: "Delhi University",
-            domain: "du.ac.in",
-            logo: "img/logos/delhi.png",
-            color: "#4B2E83",
-            layout: "vertical",
-            address: "Benito Juarez Marg, South Campus, New Delhi, India",
-            majors: ["Political Science", "Economics", "English", "Commerce", "History"]
         }
     ],
     "UK": [
@@ -227,7 +249,7 @@ const UNIVERSITY_DATA = {
             name: "Technical University of Munich",
             shortName: "TUM",
             domain: "tum.de",
-            logo: "img/logos/tum.svg",
+            logo: "img/logos/tum_official.png",
             color: "#3070B3",
             layout: "horizontal",
             address: "Arcisstraße 21, 80333 München, Germany",
@@ -241,87 +263,13 @@ const UNIVERSITY_DATA = {
             color: "#00883A",
             layout: "vertical",
             address: "Geschwister-Scholl-Platz 1, 80539 München, Germany",
-            majors: ["Medicine", "Law", "Physics", "Psychology", "Business Administration"]
-        }
-    ],
-    "Canada": [
-        {
-            name: "University of Toronto",
-            shortName: "U of T",
-            domain: "utoronto.ca",
-            logo: "img/logos/uoft.png",
-            color: "#002A5C",
-            layout: "horizontal",
-            address: "27 King's College Cir, Toronto, ON M5S 1A1, Canada",
-            majors: ["Computer Science", "Engineering", "Business", "Psychology", "Biology"]
-        },
-        {
-            name: "McGill University",
-            shortName: "McGill",
-            domain: "mcgill.ca",
-            logo: "img/logos/mcgill.png",
-            color: "#ED1B2F",
-            layout: "vertical",
-            address: "845 Sherbrooke St W, Montreal, Quebec H3A 0G4, Canada",
-            majors: ["Medicine", "Law", "Engineering", "Management", "Arts"]
-        },
-        {
-            name: "University of British Columbia",
-            shortName: "UBC",
-            domain: "ubc.ca",
-            logo: "img/logos/ubc.svg",
-            color: "#002145",
-            layout: "horizontal",
-            address: "Vancouver, BC V6T 1Z4, Canada",
-            majors: ["Computer Science", "Economics", "Psychology", "Biology", "International Relations"]
-        }
-    ],
-    "Australia": [
-        {
-            name: "The University of Melbourne",
-            shortName: "UniMelb",
-            domain: "unimelb.edu.au",
-            logo: "img/logos/unimelb.jpg",
-            color: "#094183",
-            layout: "vertical",
-            address: "Parkville VIC 3010, Australia",
-            majors: ["Medicine", "Law", "Business", "Arts", "Engineering"]
-        },
-        {
-            name: "Australian National University",
-            shortName: "ANU",
-            domain: "anu.edu.au",
-            logo: "img/logos/anu.png",
-            color: "#BE830E",
-            layout: "horizontal",
-            address: "Canberra ACT 0200, Australia",
-            majors: ["Political Science", "International Relations", "Law", "Economics", "Philosophy"]
-        },
-        {
-            name: "The University of Sydney",
-            shortName: "USYD",
-            domain: "sydney.edu.au",
-            logo: "img/logos/usyd.png",
-            color: "#E64626",
-            layout: "vertical",
-            address: "Camperdown NSW 2006, Australia",
-            majors: ["Medicine", "Law", "Arts", "Engineering", "Business"]
+            majors: ["Physics", "Chemistry", "Biology", "Medicine", "Law"]
         }
     ],
     "France": [
         {
-            name: "Sorbonne University",
-            shortName: "Sorbonne",
-            domain: "sorbonne-universite.fr",
-            logo: "img/logos/sorbonne.svg",
-            color: "#1D1D1B",
-            layout: "horizontal",
-            address: "21 Rue de l'École de Médecine, 75006 Paris, France",
-            majors: ["Humanities", "Medicine", "Science", "Engineering", "Law"]
-        },
-        {
             name: "École Polytechnique",
-            shortName: "Polytechnique",
+            shortName: "X",
             domain: "polytechnique.edu",
             logo: "img/logos/polytechnique.svg",
             color: "#CE2029",
@@ -345,7 +293,7 @@ const UNIVERSITY_DATA = {
             name: "National University of Singapore",
             shortName: "NUS",
             domain: "nus.edu.sg",
-            logo: "img/logos/nus.jpg",
+            logo: "img/logos/nus_official.png",
             color: "#EF7C00",
             layout: "horizontal",
             address: "21 Lower Kent Ridge Rd, Singapore 119077",
@@ -355,7 +303,7 @@ const UNIVERSITY_DATA = {
             name: "Nanyang Technological University",
             shortName: "NTU",
             domain: "ntu.edu.sg",
-            logo: "img/logos/ntu.png",
+            logo: "img/logos/ntu_official.png",
             color: "#C20430",
             layout: "vertical",
             address: "50 Nanyang Ave, Singapore 639798",
@@ -409,7 +357,7 @@ const UNIVERSITY_DATA = {
             name: "University of Campinas",
             shortName: "Unicamp",
             domain: "unicamp.br",
-            logo: "img/logos/unicamp.png",
+            logo: "img/logos/unicamp_official.png",
             color: "#CC0000",
             layout: "vertical",
             address: "Cidade Universitária, Campinas - SP, Brazil",
@@ -424,6 +372,38 @@ const UNIVERSITY_DATA = {
             layout: "horizontal",
             address: "Cidade Universitária, Rio de Janeiro - RJ, Brazil",
             majors: ["Engineering", "Medicine", "Law", "Architecture", "Economics"]
+        }
+    ],
+    "Australia": [
+        {
+            name: "The University of Melbourne",
+            shortName: "UniMelb",
+            domain: "unimelb.edu.au",
+            logo: "img/logos/unimelb_official.svg",
+            color: "#094183",
+            layout: "vertical",
+            address: "Parkville VIC 3010, Australia",
+            majors: ["Medicine", "Law", "Business", "Arts", "Engineering"]
+        },
+        {
+            name: "Australian National University",
+            shortName: "ANU",
+            domain: "anu.edu.au",
+            logo: "img/logos/anu_official.png",
+            color: "#BE830E",
+            layout: "horizontal",
+            address: "Canberra ACT 2601, Australia",
+            majors: ["Political Science", "International Relations", "Law", "Economics", "Asian Studies"]
+        },
+        {
+            name: "The University of Sydney",
+            shortName: "USYD",
+            domain: "sydney.edu.au",
+            logo: "img/logos/usyd_official.png",
+            color: "#E64626",
+            layout: "vertical",
+            address: "Camperdown NSW 2006, Australia",
+            majors: ["Medicine", "Law", "Business", "Arts", "Engineering"]
         }
     ]
 };
