@@ -4,662 +4,145 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Card Generator - Global University IDs</title>
+    <meta name="description"
+        content="Generate professional student ID cards from universities worldwide with AI-powered data">
+    <meta name="author" content="ThanhNguyxn">
+    <title>Global Student ID Generator</title>
 
-    <!-- Tailwind CSS -->
+    <!--tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- html2canvas & jsPDF -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="css/style.css">
 
-    <!-- Google Fonts -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700&family=Noto+Sans+KR:wght@400;500;700&display=swap"
-        rel="stylesheet">
-
-    <style>
-        * {
-            font-family: 'Inter', sans-serif;
-        }
-
-        body {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-        }
-
-        .glass-card {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-        }
-
-        /* Professional Student Card - POVNcc Design */
-        .student-card {
-            background: white;
-            border-radius: 16px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            position: relative;
-            min-height: 380px;
-        }
-
-        /* Barcode Section */
-        .barcode-section {
-            background: #f8f9fa;
-            padding: 0.75rem;
-            text-align: center;
-            border-top: 1px solid #e0e0e0;
-        }
-
-        .barcode {
-            background: repeating-linear-gradient(90deg, #000 0px, #000 2px, #fff 2px, #fff 4px);
-            height: 50px;
-            border-radius: 4px;
-            margin-bottom: 0.5rem;
-        }
-
-        .input-field {
-            transition: all 0.3s ease;
-        }
-
-        .input-field:focus {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
-        }
-
-        .btn-country {
-            transition: all 0.3s ease;
-            font-weight: 600;
-        }
-
-        .btn-country:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
-        }
-
-        .jp-text {
-            font-family: 'Noto Sans JP', sans-serif;
-        }
-
-        .kr-text {
-            font-family: 'Noto Sans KR', sans-serif;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .fade-in {
-            animation: fadeIn 0.5s ease;
-        }
-    </style>
+    <!-- Favicon -->
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎓</text></svg>">
 </head>
 
-<body class="p-4 md:p-8">
-    <div class="max-w-7xl mx-auto">
-        <!-- Header -->
-        <div class="text-center mb-6 fade-in">
-            <h1 class="text-4xl md:text-5xl font-bold text-white mb-3">🎓 Student Card Generator</h1>
-            <p class="text-white text-lg opacity-90 mb-4">Generate realistic student ID cards from 12+ countries with AI
-                photos</p>
+<body>
+    <div class="container">
+        <!-- Left Sidebar - Controls -->
+        <aside class="sidebar">
+            <h1>🎓 Student ID Generator</h1>
+            <p>Generate professional student IDs from universities worldwide</p>
 
-            <!-- Country Buttons -->
-            <div class="flex flex-wrap justify-center gap-2 mb-4">
-                <button onclick="generateByCountry('india')"
-                    class="btn-country bg-orange-600 hover:bg-orange-700 text-white px-4 py-2 rounded-lg text-sm">🇮🇳
-                    India</button>
-                <button onclick="generateByCountry('us')"
-                    class="btn-country bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm">🇺🇸
-                    US</button>
-                <button onclick="generateByCountry('uk')"
-                    class="btn-country bg-blue-800 hover:bg-blue-900 text-white px-4 py-2 rounded-lg text-sm">🇬🇧
-                    UK</button>
-                <button onclick="generateByCountry('canada')"
-                    class="btn-country bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg text-sm">🇨🇦
-                    Canada</button>
-                <button onclick="generateByCountry('australia')"
-                    class="btn-country bg-green-700 hover:bg-green-800 text-white px-4 py-2 rounded-lg text-sm">🇦🇺
-                    Australia</button>
-                <button onclick="generateByCountry('germany')"
-                    class="btn-country bg-gray-800 hover:bg-gray-900 text-white px-4 py-2 rounded-lg text-sm">🇩🇪
-                    Germany</button>
-                <button onclick="generateByCountry('france')"
-                    class="btn-country bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-sm">🇫🇷
-                    France</button>
-                <button onclick="generateByCountry('korea')"
-                    class="btn-country bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg text-sm">🇰🇷
-                    Korea</button>
-                <button onclick="generateByCountry('japan')"
-                    class="btn-country bg-red-400 hover:bg-red-500 text-white px-4 py-2 rounded-lg text-sm">🇯🇵
-                    Japan</button>
-                <button onclick="generateByCountry('singapore')"
-                    class="btn-country bg-red-700 hover:bg-red-800 text-white px-4 py-2 rounded-lg text-sm">🇸🇬
-                    Singapore</button>
-                <button onclick="generateByCountry('china')"
-                    class="btn-country bg-yellow-600 hover:bg-yellow-700 text-white px-4 py-2 rounded-lg text-sm">🇨🇳
-                    China</button>
-                <button onclick="generateByCountry('brazil')"
-                    class="btn-country bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg text-sm">🇧🇷
-                    Brazil</button>
-            </div>
-        </div>
-
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <!-- Form Section -->
-            <div class="glass-card rounded-2xl shadow-2xl p-6 md:p-8 fade-in">
-                <h2 class="text-2xl font-bold text-gray-800 mb-6">📝 Student Information</h2>
-
-                <form class="space-y-4">
-                    <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-2">Full Name</label>
-                        <input type="text" id="fullName"
-                            class="input-field w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-purple-500 focus:outline-none"
-                            placeholder="John Smith" maxlength="40">
-                    </div>
-
-                    <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-2">Date of Birth</label>
-                        <input type="date" id="dob"
-                            class="input-field w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-purple-500 focus:outline-none">
-                    </div>
-
-                    <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-2">Student ID</label>
-                        <input type="text" id="studentId"
-                            class="input-field w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-purple-500 focus:outline-none"
-                            placeholder="STU123456" maxlength="20">
-                    </div>
-
-                    <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-2">Department / Major</label>
-                        <input type="text" id="department"
-                            class="input-field w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-purple-500 focus:outline-none"
-                            placeholder="Computer Science" maxlength="60">
-                    </div>
-
-                    <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-2">Student Email (for copy
-                            only)</label>
-                        <div class="flex gap-2">
-                            <input type="email" id="email"
-                                class="input-field flex-1 px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-purple-500 focus:outline-none"
-                                placeholder="student@university.edu">
-                            <button type="button" onclick="copyEmail()"
-                                class="bg-blue-500 hover:bg-blue-600 text-white px-4 rounded-lg">📋</button>
-                        </div>
-                        <p class="text-xs text-gray-500 mt-1">Email won't be shown on the card</p>
-                    </div>
-
-                    <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-2">Photo</label>
-                        <button type="button" onclick="generateAIPhoto()"
-                            class="w-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-4 py-3 rounded-lg font-semibold mb-3">
-                            🖼️ Generate AI Photo
-                        </button>
-                        <input type="file" id="photoUpload" accept="image/*" class="hidden">
-                        <button type="button" onclick="document.getElementById('photoUpload').click()"
-                            class="w-full border-2 border-dashed border-gray-300 hover:border-purple-500 rounded-lg p-4 text-gray-600 hover:text-purple-600">
-                            📤 Upload Custom Photo
-                        </button>
-                    </div>
-
-                    <div class="flex gap-3">
-                        <button type="button" onclick="downloadPNG()"
-                            class="flex-1 bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 py-4 rounded-lg text-white font-bold shadow-lg">
-                            📥 PNG
-                        </button>
-                        <button type="button" onclick="downloadPDF()"
-                            class="flex-1 bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 py-4 rounded-lg text-white font-bold shadow-lg">
-                            📄 PDF
-                        </button>
-                    </div>
-                </form>
+            <!-- Country Selection -->
+            <div class="form-group">
+                <label for="countrySelect">Select Country</label>
+                <select id="countrySelect">
+                    <option value="">-- Select Country --</option>
+                </select>
             </div>
 
-            <!-- Card Preview -->
-            <div class="fade-in">
-                <div class="glass-card rounded-2xl shadow-2xl p-6 md:p-8">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-6">👁️ Card Preview</h2>
+            <!-- University Selection -->
+            <div class="form-group">
+                <label for="universitySelect">Select University</label>
+                <select id="universitySelect" disabled>
+                    <option value="">-- Select University --</option>
+                </select>
+            </div>
 
-                    <div id="studentCard" class="student-card">
-                                                <!-- Card Header - POVNcc Style -->
-                        <div style="background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); padding: 1.5rem; position: relative;">
-                            <div style="position: absolute; top: 0; left: 0; right: 0; height: 100%; background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);"></div>
-                            
-                            <!-- Horizontal Layout: Logo Left + Name Right -->
-                            <div style="display: flex; align-items: center; gap: 1rem; position: relative; z-index: 1;">
-                                <!-- University Logo (Left) -->
-                                <div style="width: 80px; height: 80px; background: white; border-radius: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.2); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-                                    <svg style="width: 50px; height: 50px; color: #1e3c72;" fill="currentColor" viewBox="0 0 24 24">
-                                        <path d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72L12 15l5-2.73v3.72z" />
-                                    </svg>
-                                </div>
-                                
-                                <!-- University Name (Right) -->
-                                <div style="flex: 1; text-align: left;">
-                                    <h3 id="universityName" style="font-size: 1.5rem; font-weight: 700; color: white; margin: 0; line-height: 1.2;">HANYANG UNIVERSITY</h3>
-                                    <p id="universityNameEn" style="font-size: 0.875rem; color: rgba(255,255,255,0.9); margin: 0.25rem 0 0 0;">???  STUDENT ID CARD</p>
-                                </div>
-                            </div>
-                        </div>
+            <!-- Editable Student Information -->
+            <div class="form-group">
+                <label for="studentName">Full Name</label>
+                <input type="text" id="studentName" class="form-input" placeholder="AI will generate...">
+            </div>
 
-                        <!-- Card Body -->
-                        <div style="padding: 2rem 1.5rem; background: white;">
-                            <div style="display: flex; gap: 1.5rem;">
-                                <!-- Student Photo -->
-                                <div
-                                    style="width: 120px; height: 150px; border: 4px solid white; border-radius: 12px; background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); overflow: hidden; box-shadow: 0 8px 20px rgba(0,0,0,0.15); flex-shrink: 0; display: flex; align-items: center; justify-content: center;">
-                                    <img id="cardPhoto"
-                                        style="width: 100%; height: 100%; object-fit: cover; display: none;"
-                                        alt="Student">
-                                    <svg id="cardPhotoPlaceholder" style="width: 4rem; height: 4rem; color: #9ca3af;"
-                                        fill="currentColor" viewBox="0 0 24 24">
-                                        <path
-                                            d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
-                                    </svg>
-                                </div>
+            <div class="form-group">
+                <label for="studentId">Student ID</label>
+                <input type="text" id="studentId" class="form-input" placeholder="AI will generate...">
+            </div>
 
-                                <!-- Student Info -->
-                                <div style="flex: 1;">
-                                    <!-- Name -->
-                                    <div
-                                        style="margin-bottom: 1rem; padding-bottom: 0.75rem; border-bottom: 1px solid #e8ebf0;">
-                                        <p
-                                            style="font-size: 0.7rem; text-transform: uppercase; color: #64748b; font-weight: 600; letter-spacing: 0.5px; margin: 0 0 0.25rem 0;">
-                                            Full Name</p>
-                                        <p id="cardName"
-                                            style="font-size: 1rem; color: #1e293b; font-weight: 600; line-height: 1.4; margin: 0;">
-                                            ---</p>
-                                    </div>
-
-                                    <!-- DOB -->
-                                    <div
-                                        style="margin-bottom: 1rem; padding-bottom: 0.75rem; border-bottom: 1px solid #e8ebf0;">
-                                        <p
-                                            style="font-size: 0.7rem; text-transform: uppercase; color: #64748b; font-weight: 600; letter-spacing: 0.5px; margin: 0 0 0.25rem 0;">
-                                            Date of Birth</p>
-                                        <p id="cardDob"
-                                            style="font-size: 1rem; color: #1e293b; font-weight: 600; line-height: 1.4; margin: 0;">
-                                            ---</p>
-                                    </div>
-
-                                    <!-- Student ID -->
-                                    <div
-                                        style="margin-bottom: 1rem; padding-bottom: 0.75rem; border-bottom: 1px solid #e8ebf0;">
-                                        <p
-                                            style="font-size: 0.7rem; text-transform: uppercase; color: #64748b; font-weight: 600; letter-spacing: 0.5px; margin: 0 0 0.25rem 0;">
-                                            Student ID</p>
-                                        <p id="cardId"
-                                            style="font-size: 1rem; color: #1e293b; font-weight: 600; line-height: 1.4; margin: 0;">
-                                            ---</p>
-                                    </div>
-
-                                    <!-- Department -->
-                                    <div style="margin-bottom: 1rem;">
-                                        <p
-                                            style="font-size: 0.7rem; text-transform: uppercase; color: #64748b; font-weight: 600; letter-spacing: 0.5px; margin: 0 0 0.25rem 0;">
-                                            Department</p>
-                                        <p id="cardDept"
-                                            style="font-size: 1rem; color: #1e293b; font-weight: 600; line-height: 1.4; margin: 0;">
-                                            ---</p>
-                                    </div>
-
-                                    <!-- Validity Badge -->
-                                    <div style="margin-top: 1.5rem;">
-                                        <span id="cardExpiry"
-                                            style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 0.5rem 1.25rem; border-radius: 20px; font-size: 0.75rem; font-weight: 700; display: inline-block; box-shadow: 0 4px 12px rgba(16,185,129,0.3);">Valid
-                                            Until: 12/2027</span>
-                                    </div>
-                                </div>
-                            
-                            <!-- Barcode Section -->
-                            <div class="barcode-section">
-                                <div class="barcode"></div>
-                                <p id="cardBarcodeText" style="font-family: 'Courier New', monospace; font-size: 0.75rem; margin: 0.5rem 0 0 0; letter-spacing: 0.1em; color: #333;">*STU123456*</p>
-                            </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="mt-4 p-4 bg-blue-50 rounded-lg">
-                        <p class="text-sm text-blue-800">
-                            <strong>Note:</strong> Click country button for random data or fill manually
-                        </p>
-                    </div>
+            <div class="form-group">
+                <label for="studentEmail">Email</label>
+                <div class="input-with-button">
+                    <input type="email" id="studentEmail" class="form-input" placeholder="AI will generate...">
+                    <button class="btn-icon" id="copyEmailBtn" title="Copy Email">
+                        📋
+                    </button>
                 </div>
             </div>
-        </div>
 
-        <!-- Footer -->
-        <div class="text-center mt-8 text-white space-y-3">
-            <div class="opacity-90">
-                <a href="https://buymeacoffee.com/thanhnguyxn" target="_blank"
-                    class="inline-flex items-center gap-2 bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-semibold px-6 py-3 rounded-lg shadow-lg transition-all hover:scale-105">
-                    <span class="text-2xl">☕</span>
-                    <span>Buy Me a Coffee</span>
-                </a>
+            <div class="form-group">
+                <label for="studentMajor">Major / Department</label>
+                <input type="text" id="studentMajor" class="form-input" placeholder="e.g. Information Technology"
+                    value="Information Technology">
             </div>
-            <p class="text-sm opacity-75">
-                Made with ❤️ for educational purposes •
-                <a href="https://github.com/ThanhNguyxn/student-card-generator" target="_blank"
-                    class="underline hover:opacity-100">GitHub</a>
-            </p>
-        </div>
+
+            <div class="form-group">
+                <label for="dateOfBirth">Date of Birth</label>
+                <input type="date" id="dateOfBirth" class="form-input">
+            </div>
+
+            <div class="form-group">
+                <label for="issueDate">Issue Date</label>
+                <input type="date" id="issueDate" class="form-input">
+            </div>
+
+            <div class="form-group">
+                <label for="expiryDate">Expiry Date</label>
+                <input type="date" id="expiryDate" class="form-input">
+            </div>
+
+            <!-- Photo Upload -->
+            <div class="form-group">
+                <label>Custom Photo (Optional)</label>
+                <input type="file" id="photoInput" accept="image/*">
+                <button class="btn btn-secondary" id="uploadBtn">
+                    📸 Upload Photo
+                </button>
+            </div>
+
+            <!-- Action Buttons -->
+            <button class="btn btn-primary" id="regenerateBtn">
+                🔄 Generate New Identity
+            </button>
+
+            <!-- Download Section -->
+            <div class="btn-group">
+                <button class="btn btn-success" id="downloadPngBtn">
+                    ⬇️ Download PNG
+                </button>
+                <button class="btn btn-danger" id="downloadPdfBtn">
+                    📄 Download PDF
+                </button>
+            </div>
+
+            <!-- Footer Info -->
+            <div style="margin-top: 30px; padding-top: 20px; border-top: 2px solid #f0f0f0;">
+                <p style="font-size: 12px; color: #999; text-align: center;">
+                    Made with ❤️ by <a href="https://github.com/ThanhNguyxn" target="_blank"
+                        style="color: #667eea; text-decoration: none;">ThanhNguyxn</a>
+                </p>
+            </div>
+        </aside>
+
+        <!-- Right Preview Area -->
+        <main class="preview-section">
+            <div id="cardPreview">
+                <div class="placeholder-text">
+                    Select a country and university to generate student ID
+                </div>
+            </div>
+        </main>
     </div>
 
-    <script>
-        const universities = {
-            india: [
-                { name: "Indian Institute of Technology Delhi", nameEn: "IIT Delhi", domain: "iitd.ac.in" },
-                { name: "University of Mumbai", nameEn: "Mumbai University", domain: "mu.ac.in" },
-                { name: "Delhi University", nameEn: "DU", domain: "du.ac.in" },
-                { name: "Jawaharlal Nehru University", nameEn: "JNU", domain: "jnu.ac.in" },
-                { name: "Banaras Hindu University", nameEn: "BHU", domain: "bhu.ac.in" }
-            ],
-            us: [
-                { name: "Massachusetts Institute of Technology", nameEn: "MIT", domain: "mit.edu" },
-                { name: "Stanford University", nameEn: "Stanford", domain: "stanford.edu" },
-                { name: "Harvard University", nameEn: "Harvard", domain: "harvard.edu" },
-                { name: "UC Berkeley", nameEn: "Berkeley", domain: "berkeley.edu" },
-                { name: "Yale University", nameEn: "Yale", domain: "yale.edu" }
-            ],
-            uk: [
-                { name: "University of Oxford", nameEn: "Oxford", domain: "ox.ac.uk" },
-                { name: "University of Cambridge", nameEn: "Cambridge", domain: "cam.ac.uk" },
-                { name: "Imperial College London", nameEn: "Imperial", domain: "imperial.ac.uk" },
-                { name: "UCL", nameEn: "UCL", domain: "ucl.ac.uk" },
-                { name: "University of Edinburgh", nameEn: "Edinburgh", domain: "ed.ac.uk" }
-            ],
-            canada: [
-                { name: "University of Toronto", nameEn: "U of T", domain: "utoronto.ca" },
-                { name: "UBC", nameEn: "UBC", domain: "ubc.ca" },
-                { name: "McGill University", nameEn: "McGill", domain: "mcgill.ca" },
-                { name: "University of Alberta", nameEn: "UAlberta", domain: "ualberta.ca" },
-                { name: "University of Waterloo", nameEn: "Waterloo", domain: "uwaterloo.ca" }
-            ],
-            australia: [
-                { name: "University of Melbourne", nameEn: "Melbourne", domain: "unimelb.edu.au" },
-                { name: "University of Sydney", nameEn: "Sydney", domain: "sydney.edu.au" },
-                { name: "ANU", nameEn: "ANU", domain: "anu.edu.au" },
-                { name: "University of Queensland", nameEn: "UQ", domain: "uq.edu.au" },
-                { name: "Monash University", nameEn: "Monash", domain: "monash.edu" }
-            ],
-            germany: [
-                { name: "LMU München", nameEn: "LMU Munich", domain: "lmu.de" },
-                { name: "TU München", nameEn: "TU Munich", domain: "tum.de" },
-                { name: "Universität Heidelberg", nameEn: "Heidelberg", domain: "uni-heidelberg.de" },
-                { name: "Humboldt-Universität", nameEn: "Humboldt Berlin", domain: "hu-berlin.de" },
-                { name: "Freie Universität Berlin", nameEn: "FU Berlin", domain: "fu-berlin.de" }
-            ],
-            france: [
-                { name: "Université PSL", nameEn: "PSL", domain: "psl.eu" },
-                { name: "Sorbonne Université", nameEn: "Sorbonne", domain: "sorbonne-universite.fr" },
-                { name: "École Polytechnique", nameEn: "Polytechnique", domain: "polytechnique.edu" },
-                { name: "Sciences Po", nameEn: "Sciences Po", domain: "sciencespo.fr" },
-                { name: "Université Paris-Saclay", nameEn: "Paris-Saclay", domain: "universite-paris-saclay.fr" }
-            ],
-            korea: [
-                { name: "서울대학교", nameEn: "Seoul National University", domain: "snu.ac.kr" },
-                { name: "연세대학교", nameEn: "Yonsei University", domain: "yonsei.ac.kr" },
-                { name: "고려대학교", nameEn: "Korea University", domain: "korea.ac.kr" },
-                { name: "한양대학교", nameEn: "Hanyang University", domain: "hanyang.ac.kr" },
-                { name: "성균관대학교", nameEn: "SKKU", domain: "skku.edu" }
-            ],
-            japan: [
-                { name: "東京大学", nameEn: "University of Tokyo", domain: "u-tokyo.ac.jp" },
-                { name: "京都大学", nameEn: "Kyoto University", domain: "kyoto-u.ac.jp" },
-                { name: "早稲田大学", nameEn: "Waseda University", domain: "waseda.jp" },
-                { name: "慶應義塾大学", nameEn: "Keio University", domain: "keio.ac.jp" },
-                { name: "大阪大学", nameEn: "Osaka University", domain: "osaka-u.ac.jp" }
-            ],
-            singapore: [
-                { name: "NUS", nameEn: "NUS", domain: "nus.edu.sg" },
-                { name: "NTU", nameEn: "NTU", domain: "ntu.edu.sg" },
-                { name: "SMU", nameEn: "SMU", domain: "smu.edu.sg" },
-                { name: "SUTD", nameEn: "SUTD", domain: "sutd.edu.sg" },
-                { name: "SIT", nameEn: "SIT", domain: "singaporetech.edu.sg" }
-            ],
-            china: [
-                { name: "清华大学", nameEn: "Tsinghua University", domain: "tsinghua.edu.cn" },
-                { name: "北京大学", nameEn: "Peking University", domain: "pku.edu.cn" },
-                { name: "复旦大学", nameEn: "Fudan University", domain: "fudan.edu.cn" },
-                { name: "上海交通大学", nameEn: "Shanghai Jiao Tong", domain: "sjtu.edu.cn" },
-                { name: "浙江大学", nameEn: "Zhejiang University", domain: "zju.edu.cn" }
-            ],
-            brazil: [
-                { name: "USP", nameEn: "USP", domain: "usp.br" },
-                { name: "UNICAMP", nameEn: "UNICAMP", domain: "unicamp.br" },
-                { name: "UFRJ", nameEn: "UFRJ", domain: "ufrj.br" },
-                { name: "UFMG", nameEn: "UFMG", domain: "ufmg.br" },
-                { name: "PUC-Rio", nameEn: "PUC-Rio", domain: "puc-rio.br" }
-            ]
-        };
+    <!-- External Libraries -->
+    <!-- Faker.js v5.5.3 (Old Stable API) - Using jsDelivr CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/faker@5.5.3/dist/faker.min.js"></script>
 
-        const departments = {
-            india: ["Computer Science", "Electrical Engineering", "Mechanical Engineering", "Business Admin", "Economics"],
-            us: ["Computer Science", "Business Administration", "Psychology", "Biology", "Engineering"],
-            uk: ["Computer Science", "Engineering", "Business Studies", "Law", "Medicine"],
-            canada: ["Computer Science", "Engineering", "Business", "Health Sciences", "Arts"],
-            australia: ["IT", "Engineering", "Business", "Medicine", "Arts"],
-            germany: ["Informatik", "Maschinenbau", "BWL", "Medizin", "Jura"],
-            france: ["Informatique", "Ingénierie", "Commerce", "Médecine", "Droit"],
-            korea: ["컴퓨터공학", "경영학", "전자공학", "의학", "법학"],
-            japan: ["情報工学", "経営学", "電気電子工学", "医学", "法学"],
-            singapore: ["Computer Science", "Business", "Engineering", "IS", "Law"],
-            china: ["计算机科学", "工商管理", "电气工程", "医学", "法学"],
-            brazil: ["Ciência da Computação", "Engenharia", "Administração", "Medicina", "Direito"]
-        };
+    <!-- html2canvas v1.4.1 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
-        let currentCountry = null;
-        let currentUniversity = null;
+    <!-- jsPDF (Latest) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
-        const fullNameInput = document.getElementById('fullName');
-        const dobInput = document.getElementById('dob');
-        const studentIdInput = document.getElementById('studentId');
-        const departmentInput = document.getElementById('department');
-        const emailInput = document.getElementById('email');
-        const photoUploadInput = document.getElementById('photoUpload');
+    <!-- University Data -->
+    <script src="js/universities.js"></script>
 
-        const cardName = document.getElementById('cardName');
-        const cardDob = document.getElementById('cardDob');
-        const cardId = document.getElementById('cardId');
-        const cardDept = document.getElementById('cardDept');
-        const cardPhoto = document.getElementById('cardPhoto');
-        const cardPhotoPlaceholder = document.getElementById('cardPhotoPlaceholder');
-        const universityName = document.getElementById('universityName');
-        const universityNameEn = document.getElementById('universityNameEn');
-        const cardExpiry = document.getElementById('cardExpiry');
-        const cardBarcodeText = document.getElementById('cardBarcodeText');
-
-        function generateDOB() {
-            const year = Math.floor(Math.random() * 7) + 1998;
-            const month = String(Math.floor(Math.random() * 12) + 1).padStart(2, '0');
-            const day = String(Math.floor(Math.random() * 28) + 1).padStart(2, '0');
-            return `${year}-${month}-${day}`;
-        }
-
-        function generateStudentId(university, year) {
-            const prefix = university.nameEn.substring(0, 3).toUpperCase().replace(/\s/g, '');
-            const randomNum = Math.floor(Math.random() * 9000) + 1000;
-            return `${prefix}${year}${randomNum}`;
-        }
-
-        async function generateByCountry(country) {
-            currentCountry = country;
-            const universityList = universities[country];
-            currentUniversity = universityList[Math.floor(Math.random() * universityList.length)];
-
-            // Get random user data from API
-            try {
-                const response = await fetch(`https://randomuser.me/api/?nat=${country === 'india' ? 'in' : country === 'us' ? 'us' : country === 'uk' ? 'gb' : country === 'canada' ? 'ca' : country === 'australia' ? 'au' : country === 'germany' ? 'de' : country === 'france' ? 'fr' : country === 'brazil' ? 'br' : 'us'}`);
-                const data = await response.json();
-                const user = data.results[0];
-
-                const name = `${user.name.first} ${user.name.last}`;
-                const dob = generateDOB();
-                const year = dob.substring(2, 4);
-                const studentId = generateStudentId(currentUniversity, year);
-                const department = departments[country][Math.floor(Math.random() * departments[country].length)];
-                const email = `${user.login.username}@${currentUniversity.domain}`;
-
-                fullNameInput.value = name;
-                dobInput.value = dob;
-                studentIdInput.value = studentId;
-                departmentInput.value = department;
-                emailInput.value = email;
-
-                // Set photo
-                cardPhoto.src = user.picture.large;
-                cardPhoto.style.display = 'block';
-                cardPhotoPlaceholder.style.display = 'none';
-
-                updateCard();
-                updateUniversity();
-
-                const expiryYear = parseInt(dob.substring(0, 4)) + 22;
-                cardExpiry.textContent = `Valid Until: 12/${expiryYear}`;
-            } catch (error) {
-                console.error('Error fetching data:', error);
-                alert('Error generating data. Please try again.');
-            }
-        }
-
-        function updateCard() {
-            cardName.textContent = fullNameInput.value || '---';
-            cardDob.textContent = dobInput.value ? new Date(dobInput.value).toLocaleDateString('en-GB') : '---';
-            cardId.textContent = studentIdInput.value || '---';
-            cardDept.textContent = departmentInput.value || '---';
-            cardBarcodeText.textContent = studentIdInput.value ? `*${studentIdInput.value}*` : '*STU123456*';
-
-            if (currentCountry === 'japan') {
-                cardName.className = 'jp-text';
-                cardDept.className = 'jp-text';
-            } else if (currentCountry === 'korea') {
-                cardName.className = 'kr-text';
-                cardDept.className = 'kr-text';
-            } else {
-                cardName.className = '';
-                cardDept.className = '';
-            }
-        }
-
-        function updateUniversity() {
-            if (!currentUniversity) return;
-
-            universityName.textContent = currentUniversity.name;
-            universityNameEn.textContent = currentUniversity.nameEn;
-
-            if (currentCountry === 'japan') {
-                universityName.className = 'jp-text';
-            } else if (currentCountry === 'korea') {
-                universityName.className = 'kr-text';
-            } else {
-                universityName.className = '';
-            }
-        }
-
-        async function generateAIPhoto() {
-            try {
-                const response = await fetch('https://randomuser.me/api/');
-                const data = await response.json();
-                const photoUrl = data.results[0].picture.large;
-
-                cardPhoto.src = photoUrl;
-                cardPhoto.style.display = 'block';
-                cardPhotoPlaceholder.style.display = 'none';
-            } catch (error) {
-                console.error('Error generating photo:', error);
-                alert('Error generating photo. Please try again.');
-            }
-        }
-
-        function copyEmail() {
-            const email = emailInput.value;
-            if (email) {
-                navigator.clipboard.writeText(email).then(() => {
-                    alert('Email copied to clipboard!');
-                });
-            }
-        }
-
-        photoUploadInput.addEventListener('change', (e) => {
-            const file = e.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = (event) => {
-                    cardPhoto.src = event.target.result;
-                    cardPhoto.style.display = 'block';
-                    cardPhotoPlaceholder.style.display = 'none';
-                };
-                reader.readAsDataURL(file);
-            }
-        });
-
-        fullNameInput.addEventListener('input', updateCard);
-        dobInput.addEventListener('input', () => {
-            updateCard();
-            if (dobInput.value) {
-                const year = parseInt(dobInput.value.substring(0, 4)) + 22;
-                cardExpiry.textContent = `Valid Until: 12/${year}`;
-            }
-        });
-        studentIdInput.addEventListener('input', updateCard);
-        departmentInput.addEventListener('input', updateCard);
-
-        async function downloadPNG() {
-            try {
-                const canvas = await html2canvas(document.getElementById('studentCard'), {
-                    scale: 3,
-                    backgroundColor: '#ffffff',
-                    useCORS: true
-                });
-
-                canvas.toBlob((blob) => {
-                    const url = URL.createObjectURL(blob);
-                    const link = document.createElement('a');
-                    link.download = `student-card-${studentIdInput.value || 'card'}.png`;
-                    link.href = url;
-                    link.click();
-                    URL.revokeObjectURL(url);
-                });
-            } catch (error) {
-                console.error('Error:', error);
-                alert('Error generating PNG');
-            }
-        }
-
-        async function downloadPDF() {
-            try {
-                const canvas = await html2canvas(document.getElementById('studentCard'), {
-                    scale: 3,
-                    backgroundColor: '#ffffff',
-                    useCORS: true
-                });
-
-                const imgData = canvas.toDataURL('image/png');
-                const { jsPDF } = window.jspdf;
-                const pdf = new jsPDF({
-                    orientation: 'landscape',
-                    unit: 'mm',
-                    format: [85.6, 53.98]
-                });
-
-                pdf.addImage(imgData, 'PNG', 0, 0, 85.6, 53.98);
-                pdf.save(`student-card-${studentIdInput.value || 'card'}.pdf`);
-            } catch (error) {
-                console.error('Error:', error);
-                alert('Error generating PDF');
-            }
-        }
-    </script>
+    <!-- Main Application Script -->
+    <script src="js/script.js"></script>
 </body>
 
 </html>

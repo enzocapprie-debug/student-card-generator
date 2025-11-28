@@ -1,310 +1,275 @@
-<div align="center">
+# 🎓 Global Student ID Generator
 
-# 🎓 Student Card Generator
+A production-ready web application that generates professional student ID cards from universities worldwide using AI-powered data generation.
 
-### Generate Professional Student ID Cards from 12+ Countries
-
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![HTML5](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
-[![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
-[![GitHub Pages](https://img.shields.io/badge/Deployed-GitHub_Pages-222222?logo=github)](https://thanhnguyxn.github.io/student-card-generator/)
-
-![App Screenshot](screenshot.png)
-
-[🚀 Live Demo](https://thanhnguyxn.github.io/student-card-generator/) • [📖 Documentation](#features) • [🤝 Contributing](CONTRIBUTING.md) • [☕ Support](https://buymeacoffee.com/thanhnguyxn)
-
-</div>
-
----
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
+![HTML](https://img.shields.io/badge/HTML-5-orange)
+![CSS](https://img.shields.io/badge/CSS-3-blue)
+![JavaScript](https://img.shields.io/badge/JavaScript-ES6-yellow)
 
 ## ✨ Features
 
-| Feature | Description |
-|---------|-------------|
-| 🌍 **12 Countries** | India, US, UK, Canada, Australia, Germany, France, Korea, Japan, Singapore, China, Brazil |
-| 🏛️ **60 Universities** | Real universities with authentic email domains |
-| 🖼️ **AI Photos** | Generate realistic photos from randomuser.me API |
-| 📥 **Export Options** | Download as PNG or PDF (CR80 standard size) |
-| ⚡ **Instant Generation** | Click country button for auto-filled data |
-| 📧 **Email Copy** | One-click email copying to clipboard |
-| 📱 **Responsive** | Works perfectly on mobile and desktop |
-| 🎨 **Professional Design** | Realistic ID card layout matching real student cards |
+- 🌍 **50+ Universities** from 13 countries (Vietnam, USA, UK, Japan, Germany, Canada, Australia, France, Singapore, China, Brazil, India, South Korea)
+- 🎨 **Premium UI/UX** with glassmorphism effects and smooth animations
+- 🤖 **AI-Powered Data** using Faker.js with automatic localization
+- 📸 **Custom Photo Upload** with Base64 conversion (CORS-safe)
+- 🎴 **Dual Layout Support** - Vertical and Horizontal ID card formats
+- 📥 **Multiple Export Options** - Download as PNG or PDF
+- 📱 **Fully Responsive** - Works on desktop, tablet, and mobile
+- 🚀 **Zero Backend** - Pure frontend, ready for GitHub Pages
 
-## 🎯 Quick Start
+## 🎯 Live Demo
 
-### Online (Recommended)
+Visit: [https://thanhnguyen.github.io/student-card-generator/](https://thanhnguyen.github.io/student-card-generator/)
 
-Just visit: **[https://thanhnguyxn.github.io/student-card-generator/](https://thanhnguyxn.github.io/student-card-generator/)**
+## ⚠️ Important Warning
+
+> [!WARNING]
+> **Legal Disclaimer - Read Carefully**
+> 
+> This application is designed for **educational and demonstration purposes only**. 
+> 
+> - ❌ **NOT Official Documents**: Generated student IDs are NOT valid official documents
+> - ❌ **NO Legal Use**: Do not use for identity verification, access control, or any legal purposes
+> - ❌ **NO Impersonation**: Do not use to impersonate students or gain unauthorized access
+> - ❌ **NO Fraud**: Misuse of this tool for fraudulent activities is **illegal** and **punishable by law**
+> 
+> **Privacy & Data:**
+> - All data is generated randomly using Faker.js - no real student information is used
+> - Uploaded photos are processed locally in your browser (Base64 conversion)
+> - No data is sent to any server or stored anywhere
+> - University logos and names are used for demonstration only - all trademarks belong to their respective owners
+> 
+> **Intended Use:**
+> - ✅ Learning web development techniques
+> - ✅ Portfolio demonstration
+> - ✅ UI/UX design reference
+> - ✅ Testing export/print functionality
+> 
+> **By using this application, you agree to:**
+> - Use it responsibly and ethically
+> - Not attempt to pass generated IDs as real documents
+> - Respect university trademarks and intellectual property
+> - Comply with all local laws and regulations
+> 
+> The author (@ThanhNguyxn) is **NOT responsible** for any misuse of this application.
+
+## 🛠️ Technology Stack
+
+| Technology | Version | Purpose |
+|------------|---------|---------|
+| **Tailwind CSS** | 3.4 | Utility-first CSS framework |
+| **Faker.js** | 5.5.3 | AI data generation with localization |
+| **html2canvas** | 1.4.1 | Convert DOM to image |
+| **jsPDF** | 2.5.1 | PDF generation |
+| **Google Fonts** | Latest | Inter, Libre Baskerville, Great Vibes |
+
+## 📁 Project Structure
+
+```
+student-card-generator/
+│
+├── index.html              # Main entry point
+├── css/
+│   └── style.css          # Custom glassmorphism & card styles
+├── js/
+│   ├── universities.js    # Database of 50+ universities (Real data)
+│   └── script.js          # Main application logic
+├── README.md              # This file
+└── LICENSE                # MIT License
+```
+
+## 🚀 Quick Start
 
 ### Local Development
 
-```bash
-# Clone the repository
-git clone https://github.com/ThanhNguyxn/student-card-generator.git
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/ThanhNguyxn/student-card-generator.git
+   cd student-card-generator
+   ```
 
-# Open in browser
-cd student-card-generator
-open index.html  # Mac
-start index.html # Windows
-xdg-open index.html # Linux
+2. **Open in browser**
+   ```bash
+   # Just open index.html in your browser
+   # No build process needed!
+   ```
+
+3. **Or use a local server (recommended)**
+   ```bash
+   # Using Python
+   python -m http.server 8000
+   
+   # Using Node.js
+   npx serve
+   ```
+
+4. **Visit** `http://localhost:8000`
+
+## 📦 Deployment to GitHub Pages
+
+### Method 1: Via GitHub UI (Easiest)
+
+1. Go to your repository on GitHub
+2. Click **Settings** → **Pages**
+3. Under **Source**, select `main` branch
+4. Click **Save**
+5. Your site will be live at `https://YOUR_USERNAME.github.io/student-card-generator/`
+
+### Method 2: Via Git Commands
+
+```bash
+# Initialize git (if not already done)
+git init
+git add .
+git commit -m "Initial commit: Global Student ID Generator"
+
+# Connect to GitHub repository
+git branch -M main
+git remote add origin https://github.com/ThanhNguyxn/student-card-generator.git
+git push -u origin main
+
+# Enable GitHub Pages
+# Go to Settings → Pages → Select 'main' branch → Save
 ```
 
-No build steps required! Just open `index.html` in your browser.
+### Method 3: Using gh-pages branch
 
-## 🎓 Supported Universities
+```bash
+# Create a gh-pages branch
+git checkout -b gh-pages
+git push origin gh-pages
 
-<details>
-<summary><b>🇮🇳 India (5 universities)</b></summary>
+# Go to Settings → Pages → Select 'gh-pages' branch → Save
+```
 
-- Indian Institute of Technology Delhi (IIT Delhi)
-- University of Mumbai
-- University of Delhi (DU)
-- Jawaharlal Nehru University (JNU)
-- Banaras Hindu University (BHU)
+## 🎮 Usage Guide
 
-</details>
+1. **Select Country** - Choose from 13 available countries
+2. **Select University** - Pick from top universities in that country
+3. **Upload Photo (Optional)** - Use your own photo or let AI generate one
+4. **Generate** - AI automatically creates student data with proper localization
+5. **Download** - Export as PNG or PDF
 
-<details>
-<summary><b>🇺🇸 United States (5 universities)</b></summary>
+## 🌍 Supported Countries & Universities
 
+### Vietnam (IT Focus)
+- Hanoi University of Science and Technology (HUST)
+- VNU University of Engineering and Technology (VNU-UET)
+- VNU University of Information Technology (VNU-UIT)
+- FPT University
+- Posts and Telecommunications Institute of Technology (PTIT)
+
+### USA
 - Massachusetts Institute of Technology (MIT)
 - Stanford University
 - Harvard University
 - UC Berkeley
 - Yale University
 
-</details>
-
-<details>
-<summary><b>🇬🇧 United Kingdom (5 universities)</b></summary>
-
+### UK
 - University of Oxford
 - University of Cambridge
 - Imperial College London
-- University College London (UCL)
-- University of Edinburgh
 
-</details>
+### Japan
+- The University of Tokyo
+- Kyoto University
 
-<details>
-<summary><b>🇨🇦 Canada (5 universities)</b></summary>
+### Germany
+- Technical University of Munich (TUM)
+- Ludwig Maximilian University of Munich (LMU)
 
-- University of Toronto
-- University of British Columbia (UBC)
-- McGill University
-- University of Alberta
-- University of Waterloo
+### And 8 more countries... (Canada, Australia, France, Singapore, China, Brazil, India, South Korea)
 
-</details>
+## 🎨 Key Features Explained
 
-<details>
-<summary><b>🇦🇺 Australia (5 universities)</b></summary>
+### Smart Data Generation
+- **Localized Names**: Vietnamese names for Vietnamese unis, Japanese for Japanese unis, etc.
+- **Smart Dates**: Issue date randomly set 1-6 months in the past, valid for 4 years
+- **Realistic Emails**: Generated based on university domain
+- **Unique IDs**: Year + 5-digit random number
 
-- University of Melbourne
-- University of Sydney
-- Australian National University (ANU)
-- University of Queensland
-- Monash University
+### Photo Handling
+- Default: Random avatar from `pravatar.cc`
+- Custom: Upload your own photo (automatically converted to Base64 for CORS safety)
 
-</details>
+### Export Options
+- **PNG**: High-quality image export using html2canvas
+- **PDF**: Centered on A4 landscape page using jsPDF
 
-<details>
-<summary><b>🇩🇪 Germany (5 universities)</b></summary>
+## 🔧 Customization
 
-- LMU München
-- TU München
-- Universität Heidelberg
-- Humboldt-Universität Berlin
-- Freie Universität Berlin
+### Adding New Universities
 
-</details>
+Edit `js/universities.js`:
 
-<details>
-<summary><b>🇫🇷 France (5 universities)</b></summary>
-
-- Université PSL
-- Sorbonne Université
-- École Polytechnique
-- Sciences Po
-- Université Paris-Saclay
-
-</details>
-
-<details>
-<summary><b>🇰🇷 South Korea (5 universities)</b></summary>
-
-- Seoul National University (서울대학교)
-- Yonsei University (연세대학교)
-- Korea University (고려대학교)
-- Hanyang University (한양대학교)
-- Sungkyunkwan University (성균관대학교)
-
-</details>
-
-<details>
-<summary><b>🇯🇵 Japan (5 universities)</b></summary>
-
-- University of Tokyo (東京大学)
-- Kyoto University (京都大学)
-- Waseda University (早稲田大学)
-- Keio University (慶應義塾大学)
-- Osaka University (大阪大学)
-
-</details>
-
-<details>
-<summary><b>🇸🇬 Singapore (5 universities)</b></summary>
-
-- National University of Singapore (NUS)
-- Nanyang Technological University (NTU)
-- Singapore Management University (SMU)
-- Singapore University of Technology and Design (SUTD)
-- Singapore Institute of Technology (SIT)
-
-</details>
-
-<details>
-<summary><b>🇨🇳 China (5 universities)</b></summary>
-
-- Tsinghua University (清华大学)
-- Peking University (北京大学)
-- Fudan University (复旦大学)
-- Shanghai Jiao Tong University (上海交通大学)
-- Zhejiang University (浙江大学)
-
-</details>
-
-<details>
-<summary><b>🇧🇷 Brazil (5 universities)</b></summary>
-
-- Universidade de São Paulo (USP)
-- Universidade Estadual de Campinas (UNICAMP)
-- Universidade Federal do Rio de Janeiro (UFRJ)
-- Universidade Federal de Minas Gerais (UFMG)
-- PUC-Rio
-
-</details>
-
-## 💻 Tech Stack
-
-| Technology | Purpose | Version |
-|------------|---------|---------|
-| ![HTML5](https://img.shields.io/badge/-HTML5-E34F26?logo=html5&logoColor=white) | Structure | 5 |
-| ![Tailwind CSS](https://img.shields.io/badge/-Tailwind_CSS-38B2AC?logo=tailwind-css&logoColor=white) | Styling | CDN |
-| ![JavaScript](https://img.shields.io/badge/-JavaScript-F7DF1E?logo=javascript&logoColor=black) | Functionality | ES6+ |
-| ![html2canvas](https://img.shields.io/badge/-html2canvas-4285F4?logo=javascript&logoColor=white) | PNG Export | 1.4.1 |
-| ![jsPDF](https://img.shields.io/badge/-jsPDF-FF6B6B?logo=adobe-acrobat-reader&logoColor=white) | PDF Export | 2.5.1 |
-
-## 📸 How to Use
-
-1. **Quick Generate**: Click any country button (e.g., 🇮🇳 India)
-2. **AI Photo**: Click "Generate AI Photo" button for random realistic photo
-3. **Custom Photo**: Upload your own photo from device
-4. **Manual Entry**: Fill in form fields manually
-5. **Copy Email**: Click 📋 button to copy student email
-6. **Download**: Export as PNG or PDF
-
-## 🎨 Card Design
-
-The student card features:
-
-- ✅ Colorful gradient header bar
-- ✅ University logo section
-- ✅ Professional student photo (110x140px)
-- ✅ Information fields: Name, DOB, Student ID, Department
-- ✅ Realistic barcode with validity date
-- ✅ Clean, modern aesthetic
-
-## 🔧 Development
-
-### Project Structure
-
-```
-student-card-generator/
-├── index.html          # Main application (single file)
-├── README.md           # This file
-├── LICENSE             # MIT License
-├── .gitignore          # Git ignore rules
-├── CONTRIBUTING.md     # Contribution guidelines
-└── CHANGELOG.md        # Version history
-```
-
-### Key Features in Code
-
-**Random Data Generation**
 ```javascript
-async function generateByCountry(country) {
-    // Fetches from randomuser.me API
-    // Generates student ID, email, DOB
-    // Updates card preview
-}
+"YourCountry": [
+  {
+    name: "University Full Name",
+    shortName: "ABBR",
+    domain: "university.edu",
+    logo: "https://example.com/logo.png",
+    color: "#HEX_COLOR",
+    layout: "vertical", // or "horizontal"
+    address: "Full Address"
+  }
+]
 ```
 
-**AI Photo Integration**
-```javascript
-async function generateAIPhoto() {
-    const response = await fetch('https://randomuser.me/api/');
-    // Returns unique photo every time
-}
-```
+### Changing Card Design
 
-## ⚠️ Disclaimer
+Edit `css/style.css`:
+- Modify `.id-card` for overall card styling
+- Adjust `.glass-overlay` for glassmorphism effects
+- Update color schemes in `.card-header`
 
-> **Important**: This tool is for **educational and demonstration purposes only**. 
-> 
-> Generated student cards should **NOT** be used for:
-> - Official identification
-> - Identity fraud
-> - Unauthorized access to student benefits
-> - Any illegal activities
+## 🐛 Troubleshooting
 
-## 🤝 Contributing
+### Issue: Universities not loading
+**Solution**: Check browser console for errors. Ensure `universities.js` is loaded before `script.js`
 
-Contributions are welcome! Please see our [Contributing Guidelines](CONTRIBUTING.md).
+### Issue: Photo upload not working
+**Solution**: Make sure you're using image files (JPEG, PNG, etc.). The app converts to Base64 automatically.
 
-### Adding a New Country
+### Issue: Export fails
+**Solution**: Ensure html2canvas and jsPDF are loaded from CDN. Check network tab for 404 errors.
 
-1. Add to `universities` object
-2. Add to `departments` object  
-3. Add country button in HTML
-4. Update `generateByCountry()` function
-5. Test thoroughly
+### Issue: Localization not working
+**Solution**: Verify Faker.js version is 5.5.3 (not v6+). The new API syntax is different.
 
-## 📝 License
+## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+MIT License - feel free to use this project for personal or commercial purposes.
+
+## 👨‍💻 Author
+
+**ThanhNguyxn**
+- GitHub: [@ThanhNguyxn](https://github.com/ThanhNguyxn)
+- Project: [student-card-generator](https://github.com/ThanhNguyxn/student-card-generator)
 
 ## 🙏 Acknowledgments
 
-- **Tailwind CSS** - Styling framework
-- **html2canvas** - Screenshot functionality
-- **jsPDF** - PDF generation
-- **randomuser.me** - AI photo API
-- **Google Fonts** - Typography
+- University logos from Wikipedia Commons
+- Faker.js for data generation
+- html2canvas for DOM rendering
+- jsPDF for PDF export
 
-## 📊 Stats
+## 📸 Screenshots
 
-![Repository Size](https://img.shields.io/github/repo-size/ThanhNguyxn/student-card-generator)
-![Code Size](https://img.shields.io/github/languages/code-size/ThanhNguyxn/student-card-generator)
-![Last Commit](https://img.shields.io/github/last-commit/ThanhNguyxn/student-card-generator)
+*Add screenshots of your generated student IDs here after deployment*
 
-## ☕ Support
+## 🚀 Future Enhancements
 
-If you find this project helpful, consider buying me a coffee!
-
-<a href="https://buymeacoffee.com/thanhnguyxn" target="_blank">
-  <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" height="50">
-</a>
+- [ ] QR code with real student data
+- [ ] More countries and universities
+- [ ] Custom color themes
+- [ ] Batch generation
+- [ ] Print-ready templates
 
 ---
 
-<div align="center">
+**Made with ❤️ by ThanhNguyxn**
 
-**Made with ❤️ by [ThanhNguyxn](https://github.com/ThanhNguyxn)**
-
-⭐ Star this repo if you find it useful!
-
-[Report Bug](https://github.com/ThanhNguyxn/student-card-generator/issues) • [Request Feature](https://github.com/ThanhNguyxn/student-card-generator/issues)
-
-</div>
+If you find this project useful, please give it a ⭐ on GitHub!
