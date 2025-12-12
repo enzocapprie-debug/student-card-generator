@@ -952,73 +952,55 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         const zip = new JSZip();
-        const originalDocType = currentDocType;
-        const originalMode = currentViewMode;
+        // Capture whatever documents are currently displayed
         const studentName = sanitizeFilename(studentNameInput.value || 'Student');
         const uniName = currentUniversity ? sanitizeFilename(currentUniversity.shortName) : 'University';
+        const originalMode = currentViewMode;
 
-        // 1. Capture ID Card Front
-        setDocType('idcard');
-        setViewMode('front');
-        await new Promise(resolve => setTimeout(resolve, 200));
-        const frontCard = document.querySelector('.id-card');
-        if (frontCard) {
-            const frontCanvas = await html2canvas(frontCard, { useCORS: true, allowTaint: true, backgroundColor: '#ffffff', scale: 2 });
-            zip.file(`ID_Card_Front_${studentName}_${uniName}.png`, frontCanvas.toDataURL('image/png').split(',')[1], { base64: true });
-        }
-
-        // 2. Capture ID Card Back
-        setViewMode('back');
-        await new Promise(resolve => setTimeout(resolve, 200));
-        const backCard = document.querySelector('.id-card-back');
-        if (backCard) {
-            const backCanvas = await html2canvas(backCard, { useCORS: true, allowTaint: true, backgroundColor: '#ffffff', scale: 2 });
-            zip.file(`ID_Card_Back_${studentName}_${uniName}.png`, backCanvas.toDataURL('image/png').split(',')[1], { base64: true });
-        }
-
-        // 3. Capture Standard Docs (Transcript, Schedule)
-        setDocType('standard');
-        setViewMode('both');
-        await new Promise(resolve => setTimeout(resolve, 300));
-        const standardDocs = document.querySelectorAll('.document-preview');
-        for (let i = 0; i < standardDocs.length; i++) {
-            const doc = standardDocs[i];
-            const docName = i === 0 ? 'Transcript' : 'Schedule';
-            try {
-                const canvas = await html2canvas(doc, { useCORS: true, allowTaint: true, backgroundColor: '#ffffff', scale: 2 });
-                zip.file(`${docName}_${studentName}_${uniName}.png`, canvas.toDataURL('image/png').split(',')[1], { base64: true });
-            } catch (e) {
-                console.warn(`Failed to capture ${docName}:`, e);
+        // For ID Card - capture both sides
+        if (currentDocType === 'idcard') {
+            // Capture front
+            setViewMode('front');
+            await new Promise(resolve => setTimeout(resolve, 150));
+            const frontCard = document.querySelector('.id-card');
+            if (frontCard) {
+                const frontCanvas = await html2canvas(frontCard, { useCORS: true, allowTaint: true, backgroundColor: '#ffffff', scale: 2 });
+                zip.file(`ID_Card_Front_${studentName}_${uniName}.png`, frontCanvas.toDataURL('image/png').split(',')[1], { base64: true });
             }
-        }
 
-        // 4. Capture Extra Docs (Admission Letter, Enrollment Certificate)
-        setDocType('extra');
-        await new Promise(resolve => setTimeout(resolve, 300));
-        const extraDocs = document.querySelectorAll('.document-preview');
-        for (let i = 0; i < extraDocs.length; i++) {
-            const doc = extraDocs[i];
-            const docName = i === 0 ? 'Admission_Letter' : 'Enrollment_Certificate';
-            try {
-                const canvas = await html2canvas(doc, { useCORS: true, allowTaint: true, backgroundColor: '#ffffff', scale: 2 });
-                zip.file(`${docName}_${studentName}_${uniName}.png`, canvas.toDataURL('image/png').split(',')[1], { base64: true });
-            } catch (e) {
-                console.warn(`Failed to capture ${docName}:`, e);
+            // Capture back
+            setViewMode('back');
+            await new Promise(resolve => setTimeout(resolve, 150));
+            const backCard = document.querySelector('.id-card-back');
+            if (backCard) {
+                const backCanvas = await html2canvas(backCard, { useCORS: true, allowTaint: true, backgroundColor: '#ffffff', scale: 2 });
+                zip.file(`ID_Card_Back_${studentName}_${uniName}.png`, backCanvas.toDataURL('image/png').split(',')[1], { base64: true });
+            }
+
+            setViewMode(originalMode);
+        } else {
+            // For Standard/Extra Docs - capture all visible document-preview elements
+            const docs = document.querySelectorAll('.document-preview');
+            const docTypeLabel = currentDocType === 'standard' ? 'Standard' : 'Extra';
+            for (let i = 0; i < docs.length; i++) {
+                try {
+                    const canvas = await html2canvas(docs[i], { useCORS: true, allowTaint: true, backgroundColor: '#ffffff', scale: 2 });
+                    const filename = `${docTypeLabel}_Doc_${i + 1}_${studentName}_${uniName}.png`;
+                    zip.file(filename, canvas.toDataURL('image/png').split(',')[1], { base64: true });
+                } catch (e) {
+                    console.warn(`Failed to capture doc ${i}:`, e);
+                }
             }
         }
 
         // Generate and download ZIP
         const zipBlob = await zip.generateAsync({ type: 'blob' });
-        const zipFilename = `Student_Documents_${studentName}_${uniName}.zip`;
+        const zipFilename = `Student_${currentDocType === 'idcard' ? 'ID' : (currentDocType === 'standard' ? 'Standard_Docs' : 'Extra_Docs')}_${studentName}_${uniName}.zip`;
         const link = document.createElement('a');
         link.href = URL.createObjectURL(zipBlob);
         link.download = zipFilename;
         link.click();
         URL.revokeObjectURL(link.href);
-
-        // Restore original state
-        setDocType(originalDocType);
-        setViewMode(originalMode);
     }
 
     // Helper function to sanitize strings for filenames
