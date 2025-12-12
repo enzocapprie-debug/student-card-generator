@@ -945,7 +945,6 @@ document.addEventListener('DOMContentLoaded', function () {
     async function downloadAsZip() {
         if (!currentCardData) return alert('Please generate a student ID first');
         if (typeof JSZip === 'undefined') {
-            // Fallback: Download individually
             alert('ZIP functionality requires JSZip library. Downloading separately...');
             await exportSingleSide('front', 'png');
             await exportSingleSide('back', 'png');
@@ -953,34 +952,72 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         const zip = new JSZip();
+        const originalDocType = currentDocType;
         const originalMode = currentViewMode;
+        const studentName = sanitizeFilename(studentNameInput.value || 'Student');
+        const uniName = currentUniversity ? sanitizeFilename(currentUniversity.shortName) : 'University';
 
-        // Capture front
+        // 1. Capture ID Card Front
+        setDocType('idcard');
         setViewMode('front');
-        await new Promise(resolve => setTimeout(resolve, 100));
+        await new Promise(resolve => setTimeout(resolve, 200));
         const frontCard = document.querySelector('.id-card');
         if (frontCard) {
             const frontCanvas = await html2canvas(frontCard, { useCORS: true, allowTaint: true, backgroundColor: '#ffffff', scale: 2 });
-            zip.file(generateDownloadFilename('png', 'front'), frontCanvas.toDataURL('image/png').split(',')[1], { base64: true });
+            zip.file(`ID_Card_Front_${studentName}_${uniName}.png`, frontCanvas.toDataURL('image/png').split(',')[1], { base64: true });
         }
 
-        // Capture back
+        // 2. Capture ID Card Back
         setViewMode('back');
-        await new Promise(resolve => setTimeout(resolve, 100));
+        await new Promise(resolve => setTimeout(resolve, 200));
         const backCard = document.querySelector('.id-card-back');
         if (backCard) {
             const backCanvas = await html2canvas(backCard, { useCORS: true, allowTaint: true, backgroundColor: '#ffffff', scale: 2 });
-            zip.file(generateDownloadFilename('png', 'back'), backCanvas.toDataURL('image/png').split(',')[1], { base64: true });
+            zip.file(`ID_Card_Back_${studentName}_${uniName}.png`, backCanvas.toDataURL('image/png').split(',')[1], { base64: true });
+        }
+
+        // 3. Capture Standard Docs (Transcript, Schedule)
+        setDocType('standard');
+        setViewMode('both');
+        await new Promise(resolve => setTimeout(resolve, 300));
+        const standardDocs = document.querySelectorAll('.document-preview');
+        for (let i = 0; i < standardDocs.length; i++) {
+            const doc = standardDocs[i];
+            const docName = i === 0 ? 'Transcript' : 'Schedule';
+            try {
+                const canvas = await html2canvas(doc, { useCORS: true, allowTaint: true, backgroundColor: '#ffffff', scale: 2 });
+                zip.file(`${docName}_${studentName}_${uniName}.png`, canvas.toDataURL('image/png').split(',')[1], { base64: true });
+            } catch (e) {
+                console.warn(`Failed to capture ${docName}:`, e);
+            }
+        }
+
+        // 4. Capture Extra Docs (Admission Letter, Enrollment Certificate)
+        setDocType('extra');
+        await new Promise(resolve => setTimeout(resolve, 300));
+        const extraDocs = document.querySelectorAll('.document-preview');
+        for (let i = 0; i < extraDocs.length; i++) {
+            const doc = extraDocs[i];
+            const docName = i === 0 ? 'Admission_Letter' : 'Enrollment_Certificate';
+            try {
+                const canvas = await html2canvas(doc, { useCORS: true, allowTaint: true, backgroundColor: '#ffffff', scale: 2 });
+                zip.file(`${docName}_${studentName}_${uniName}.png`, canvas.toDataURL('image/png').split(',')[1], { base64: true });
+            } catch (e) {
+                console.warn(`Failed to capture ${docName}:`, e);
+            }
         }
 
         // Generate and download ZIP
         const zipBlob = await zip.generateAsync({ type: 'blob' });
-        const zipFilename = `Student_ID_${sanitizeFilename(studentNameInput.value || 'Student')}_${currentUniversity ? sanitizeFilename(currentUniversity.shortName) : 'University'}.zip`;
+        const zipFilename = `Student_Documents_${studentName}_${uniName}.zip`;
         const link = document.createElement('a');
         link.href = URL.createObjectURL(zipBlob);
         link.download = zipFilename;
         link.click();
+        URL.revokeObjectURL(link.href);
 
+        // Restore original state
+        setDocType(originalDocType);
         setViewMode(originalMode);
     }
 
