@@ -50,6 +50,86 @@ const UNIVERSITY_DATA = {
             layout: "vertical",
             address: "New Haven, CT 06520, USA",
             majors: ["Law", "History", "Economics", "Political Science", "Psychology"]
+        },
+        {
+            name: "Princeton University",
+            shortName: "Princeton",
+            domain: "princeton.edu",
+            logo: "img/logos/princeton.png",
+            color: "#FF6600",
+            layout: "vertical",
+            address: "Princeton, NJ 08544, USA",
+            majors: ["Mathematics", "Physics", "Economics", "Computer Science", "Public Policy"]
+        },
+        {
+            name: "Columbia University",
+            shortName: "Columbia",
+            domain: "columbia.edu",
+            logo: "img/logos/columbia.png",
+            color: "#B9D9EB",
+            layout: "horizontal",
+            address: "116th St & Broadway, New York, NY 10027, USA",
+            majors: ["Business", "Law", "Journalism", "Medicine", "International Relations"]
+        },
+        {
+            name: "New York University",
+            shortName: "NYU",
+            domain: "nyu.edu",
+            logo: "img/logos/nyu.png",
+            color: "#57068C",
+            layout: "horizontal",
+            address: "70 Washington Square S, New York, NY 10012, USA",
+            majors: ["Business", "Film", "Law", "Arts", "Media"]
+        },
+        {
+            name: "University of California, Los Angeles",
+            shortName: "UCLA",
+            domain: "ucla.edu",
+            logo: "img/logos/ucla.png",
+            color: "#2774AE",
+            layout: "horizontal",
+            address: "Los Angeles, CA 90095, USA",
+            majors: ["Film", "Business", "Engineering", "Medicine", "Psychology"]
+        },
+        {
+            name: "University of Chicago",
+            shortName: "UChicago",
+            domain: "uchicago.edu",
+            logo: "img/logos/uchicago.png",
+            color: "#800000",
+            layout: "vertical",
+            address: "5801 S Ellis Ave, Chicago, IL 60637, USA",
+            majors: ["Economics", "Law", "Business", "Physics", "Political Science"]
+        },
+        {
+            name: "Duke University",
+            shortName: "Duke",
+            domain: "duke.edu",
+            logo: "img/logos/duke.png",
+            color: "#003087",
+            layout: "vertical",
+            address: "Durham, NC 27708, USA",
+            majors: ["Medicine", "Business", "Law", "Engineering", "Public Policy"]
+        },
+        {
+            name: "Cornell University",
+            shortName: "Cornell",
+            domain: "cornell.edu",
+            logo: "img/logos/cornell.png",
+            color: "#B31B1B",
+            layout: "horizontal",
+            address: "Ithaca, NY 14850, USA",
+            majors: ["Engineering", "Hotel Administration", "Agriculture", "Business", "Computer Science"]
+        },
+        {
+            name: "Northwestern University",
+            shortName: "Northwestern",
+            domain: "northwestern.edu",
+            logo: "img/logos/northwestern.png",
+            color: "#4E2A84",
+            layout: "horizontal",
+            address: "Evanston, IL 60208, USA",
+            majors: ["Journalism", "Business", "Engineering", "Law", "Medicine"]
         }
     ],
     "Canada": [
