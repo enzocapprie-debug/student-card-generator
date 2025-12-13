@@ -2,6 +2,16 @@
 const UNIVERSITY_DATA = {
     "USA": [
         {
+            name: "Pennsylvania State University-Main Campus",
+            shortName: "Penn State",
+            domain: "psu.edu",
+            logo: "img/logos/psu.png",
+            color: "#041E42",
+            layout: "horizontal",
+            address: "University Park, PA 16802, USA",
+            majors: ["Computer Science", "Engineering", "Business", "Education", "Agriculture"]
+        },
+        {
             name: "Massachusetts Institute of Technology",
             shortName: "MIT",
             domain: "mit.edu",
