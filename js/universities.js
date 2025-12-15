@@ -140,6 +140,106 @@ const UNIVERSITY_DATA = {
             layout: "horizontal",
             address: "Evanston, IL 60208, USA",
             majors: ["Journalism", "Business", "Engineering", "Law", "Medicine"]
+        },
+        {
+            name: "University of Michigan",
+            shortName: "Michigan",
+            domain: "umich.edu",
+            logo: "img/logos/michigan.png",
+            color: "#00274C",
+            layout: "horizontal",
+            address: "500 S State St, Ann Arbor, MI 48109, USA",
+            majors: ["Engineering", "Business", "Medicine", "Law", "Psychology"]
+        },
+        {
+            name: "University of Texas at Austin",
+            shortName: "UT Austin",
+            domain: "utexas.edu",
+            logo: "img/logos/ut_austin.png",
+            color: "#BF5700",
+            layout: "horizontal",
+            address: "Austin, TX 78712, USA",
+            majors: ["Business", "Engineering", "Communications", "Biology", "Computer Science"]
+        },
+        {
+            name: "University of Washington",
+            shortName: "UW",
+            domain: "washington.edu",
+            logo: "img/logos/washington.png",
+            color: "#4B2E83",
+            layout: "vertical",
+            address: "Seattle, WA 98195, USA",
+            majors: ["Computer Science", "Medicine", "Business", "Engineering", "Biology"]
+        },
+        {
+            name: "University of Florida",
+            shortName: "UF",
+            domain: "ufl.edu",
+            logo: "img/logos/florida.png",
+            color: "#FA4616",
+            layout: "vertical",
+            address: "Gainesville, FL 32611, USA",
+            majors: ["Engineering", "Business", "Biology", "Psychology", "Health Sciences"]
+        },
+        {
+            name: "Ohio State University",
+            shortName: "Ohio State",
+            domain: "osu.edu",
+            logo: "img/logos/ohio_state.png",
+            color: "#BB0000",
+            layout: "vertical",
+            address: "Columbus, OH 43210, USA",
+            majors: ["Business", "Engineering", "Psychology", "Biology", "Finance"]
+        },
+        {
+            name: "University of Pennsylvania",
+            shortName: "UPenn",
+            domain: "upenn.edu",
+            logo: "img/logos/upenn.png",
+            color: "#990000",
+            layout: "vertical",
+            address: "Philadelphia, PA 19104, USA",
+            majors: ["Business", "Medicine", "Law", "Economics", "Nursing"]
+        },
+        {
+            name: "Brown University",
+            shortName: "Brown",
+            domain: "brown.edu",
+            logo: "img/logos/brown.png",
+            color: "#4E3629",
+            layout: "vertical",
+            address: "Providence, RI 02912, USA",
+            majors: ["Computer Science", "Economics", "Biology", "History", "Applied Mathematics"]
+        },
+        {
+            name: "Johns Hopkins University",
+            shortName: "JHU",
+            domain: "jhu.edu",
+            logo: "img/logos/johns_hopkins.png",
+            color: "#002D72",
+            layout: "vertical",
+            address: "Baltimore, MD 21218, USA",
+            majors: ["Medicine", "Public Health", "International Studies", "Bioengineering", "Neuroscience"]
+        },
+        {
+            name: "University of Southern California",
+            shortName: "USC",
+            domain: "usc.edu",
+            logo: "img/logos/usc.png",
+            color: "#990000",
+            layout: "vertical",
+            address: "Los Angeles, CA 90007, USA",
+            majors: ["Film", "Business", "Communication", "Engineering", "Architecture"]
+        },
+        {
+            name: "Carnegie Mellon University",
+            shortName: "CMU",
+            domain: "cmu.edu",
+            logo: "img/logos/cmu.png",
+            color: "#C41230",
+            layout: "vertical",
+            address: "Pittsburgh, PA 15213, USA",
+            majors: ["Computer Science", "Robotics", "Drama", "Engineering", "Design"]
         }
     ],
     "Canada": [
