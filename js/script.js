@@ -140,6 +140,157 @@ document.addEventListener('DOMContentLoaded', function () {
         return `${new Date().getFullYear()}${Math.floor(Math.random() * 90000) + 10000}`;
     }
 
+    // ============== COURSE POOLS BY MAJOR ==============
+    const COURSE_POOLS = {
+        "Computer Science": {
+            prefix: "CS",
+            majorCourses: [
+                { code: "CS 1428", name: "Foundations of Computer Science I", credits: 4 },
+                { code: "CS 2308", name: "Foundations of Computer Science II", credits: 3 },
+                { code: "CS 3358", name: "Data Structures and Algorithms", credits: 3 },
+                { code: "CS 4354", name: "Operating Systems", credits: 3 },
+                { code: "MATH 2471", name: "Calculus I", credits: 4 },
+                { code: "MATH 2358", name: "Discrete Mathematics I", credits: 3 },
+                { code: "CS 3339", name: "Computer Architecture", credits: 3 },
+                { code: "CS 4395", name: "Machine Learning", credits: 3 }
+            ]
+        },
+        "Business Administration": {
+            prefix: "BA",
+            majorCourses: [
+                { code: "MGT 3303", name: "Management of Organizations", credits: 3 },
+                { code: "MKT 3343", name: "Principles of Marketing", credits: 3 },
+                { code: "ACC 2361", name: "Intro to Financial Accounting", credits: 3 },
+                { code: "ECO 2314", name: "Principles of Microeconomics", credits: 3 },
+                { code: "FIN 3312", name: "Business Finance", credits: 3 },
+                { code: "BLAW 2361", name: "Legal Environment of Business", credits: 3 },
+                { code: "QMST 2333", name: "Business Statistics", credits: 3 }
+            ]
+        },
+        "Psychology": {
+            prefix: "PSY",
+            majorCourses: [
+                { code: "PSY 1300", name: "Introduction to Psychology", credits: 3 },
+                { code: "PSY 3300", name: "Lifespan Development", credits: 3 },
+                { code: "PSY 3322", name: "Brain and Behavior", credits: 3 },
+                { code: "PSY 3341", name: "Cognitive Processes", credits: 3 },
+                { code: "PSY 4310", name: "Abnormal Psychology", credits: 3 },
+                { code: "SOC 1310", name: "Introduction to Sociology", credits: 3 },
+                { code: "STAT 2320", name: "Statistical Methods", credits: 3 }
+            ]
+        },
+        "Biology": {
+            prefix: "BIO",
+            majorCourses: [
+                { code: "BIO 1330", name: "Functional Biology", credits: 3 },
+                { code: "BIO 1130", name: "Functional Biology Lab", credits: 1 },
+                { code: "CHEM 1341", name: "General Chemistry I", credits: 3 },
+                { code: "CHEM 1141", name: "General Chemistry I Lab", credits: 1 },
+                { code: "BIO 2450", name: "Genetics", credits: 4 },
+                { code: "BIO 3450", name: "Cell Biology", credits: 3 },
+                { code: "BIO 4450", name: "Molecular Biology", credits: 3 }
+            ]
+        },
+        "Marketing": {
+            prefix: "MKT",
+            majorCourses: [
+                { code: "MKT 3350", name: "Consumer Behavior", credits: 3 },
+                { code: "MKT 3358", name: "Professional Selling", credits: 3 },
+                { code: "MKT 4330", name: "Promotional Strategy", credits: 3 },
+                { code: "MKT 4340", name: "Digital Marketing", credits: 3 },
+                { code: "MKT 4360", name: "Marketing Research", credits: 3 },
+                { code: "BA 3310", name: "Business Analytics", credits: 3 }
+            ]
+        }
+    };
+
+    const COMMON_COURSES = [
+        { code: "ENG 1310", name: "College Writing I", credits: 3 },
+        { code: "ENG 1320", name: "College Writing II", credits: 3 },
+        { code: "HIST 1310", name: "History of US to 1877", credits: 3 },
+        { code: "POSI 2310", name: "Principles of American Govt", credits: 3 },
+        { code: "COMM 1310", name: "Fund. of Human Communication", credits: 3 },
+        { code: "PHIL 1305", name: "Philosophy & Critical Thinking", credits: 3 },
+        { code: "ART 2313", name: "Introduction to Fine Arts", credits: 3 }
+    ];
+
+    const GRADE_POINTS = {
+        'A': 4.0, 'A-': 3.7, 'B+': 3.3, 'B': 3.0, 'B-': 2.7,
+        'C+': 2.3, 'C': 2.0, 'C-': 1.7, 'D+': 1.3, 'D': 1.0, 'F': 0.0
+    };
+
+    // Generate realistic grade (skewed towards A and B for "good student")
+    function generateGrade() {
+        const gradePool = ['A', 'A', 'A', 'A-', 'A-', 'B+', 'B+', 'B', 'B'];
+        return gradePool[Math.floor(Math.random() * gradePool.length)];
+    }
+
+    // Generate courses based on major with calculated GPA
+    function generateCoursesForMajor(major) {
+        // Find matching course pool or use default
+        let majorPool = COURSE_POOLS["Business Administration"]; // default
+        for (const key of Object.keys(COURSE_POOLS)) {
+            if (major.toLowerCase().includes(key.toLowerCase()) ||
+                key.toLowerCase().includes(major.toLowerCase())) {
+                majorPool = COURSE_POOLS[key];
+                break;
+            }
+        }
+
+        // Select 3-4 major courses
+        const numMajorCourses = 3 + Math.floor(Math.random() * 2);
+        const shuffledMajor = [...majorPool.majorCourses].sort(() => Math.random() - 0.5);
+        const selectedMajor = shuffledMajor.slice(0, numMajorCourses);
+
+        // Select 2-3 common courses
+        const numCommonCourses = 5 - numMajorCourses;
+        const shuffledCommon = [...COMMON_COURSES].sort(() => Math.random() - 0.5);
+        const selectedCommon = shuffledCommon.slice(0, numCommonCourses);
+
+        // Combine and add grades
+        const allCourses = [...selectedMajor, ...selectedCommon];
+        return allCourses.map(course => {
+            const grade = generateGrade();
+            const qualityPoints = course.credits * GRADE_POINTS[grade];
+            return {
+                ...course,
+                grade: grade,
+                points: qualityPoints
+            };
+        });
+    }
+
+    // Calculate GPA from courses
+    function calculateGPA(courses) {
+        const totalCredits = courses.reduce((sum, c) => sum + c.credits, 0);
+        const totalPoints = courses.reduce((sum, c) => sum + c.points, 0);
+        return {
+            credits: totalCredits,
+            points: totalPoints,
+            gpa: (totalPoints / totalCredits).toFixed(2)
+        };
+    }
+
+    // Generate cumulative stats (previous semesters + current)
+    function generateCumulativeStats(currentCourses) {
+        const prevCredits = 15 + Math.floor(Math.random() * 46); // 15-60 previous credits
+        const prevGpa = 3.2 + Math.random() * 0.8; // 3.2-4.0 previous GPA
+        const prevPoints = prevCredits * prevGpa;
+
+        const current = calculateGPA(currentCourses);
+        const cumCredits = prevCredits + current.credits;
+        const cumPoints = prevPoints + current.points;
+
+        return {
+            term: current,
+            cumulative: {
+                credits: cumCredits,
+                points: cumPoints.toFixed(2),
+                gpa: (cumPoints / cumCredits).toFixed(2)
+            }
+        };
+    }
+
     function generateAllData() {
         if (!currentUniversity) return alert('Please select a university first');
         const country = countrySelect.value;
@@ -752,19 +903,12 @@ document.addEventListener('DOMContentLoaded', function () {
         const uni = currentUniversity;
         const term = 'Fall 2024';
 
-        // Generate sample courses
-        const courses = [
-            { code: 'CMST 1101', name: 'Business Statistics', credits: 3, grade: 'A', points: 12.00 },
-            { code: 'BLAW 2201', name: 'Legal Environment of Business', credits: 3, grade: 'B+', points: 9.90 },
-            { code: 'MRKT 2101', name: 'Professional Selling', credits: 4, grade: 'A-', points: 14.80 },
-            { code: 'COMM 1010', name: 'Principles of Human Communication', credits: 3, grade: 'A', points: 12.00 },
-            { code: 'FINC 3310', name: 'Principles of American Govt', credits: 4, grade: 'B', points: 12.00 },
-            { code: 'PHIL 1101', name: 'Philosophy of Critical Thinking', credits: 3, grade: 'A-', points: 11.10 }
-        ];
-
-        const totalCredits = courses.reduce((sum, c) => sum + c.credits, 0);
-        const totalPoints = courses.reduce((sum, c) => sum + c.points, 0);
-        const gpa = (totalPoints / totalCredits).toFixed(2);
+        // Generate dynamic courses based on major with calculated GPA
+        const courses = generateCoursesForMajor(major);
+        const stats = generateCumulativeStats(courses);
+        const totalCredits = stats.term.credits;
+        const totalPoints = stats.term.points;
+        const gpa = stats.term.gpa;
 
         cardPreview.innerHTML = `
         <div class="documents-grid">
