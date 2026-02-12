@@ -8,7 +8,7 @@ const CONFIG = {
     // Cloudflare Worker URL for photo proxy
     // Leave empty to use Dicebear fallback
     // Example: 'https://student-photo-proxy.YOUR-SUBDOMAIN.workers.dev'
-    WORKER_URL: 'https://student-photo-proxy.thanhnguyentuan2007.workers.dev',
+    WORKER_URL: 'https://bratara.kulinbanbosnia.workers.dev',
 
     // Fallback options
     FALLBACK: {
